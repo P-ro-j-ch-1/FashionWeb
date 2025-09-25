@@ -20,8 +20,8 @@ const TopMenu = (props) => {
                 <div className="row">
                     <div className="col-lg-7">
                         <div className="float-left">
-                            <p>Điện thoại: 0762216048 </p>
-                            <p>email: ptitshop@gmail.com</p>
+                            <p>Điện thoại: 0964645267 </p>
+                            <p>email: fashionshop@gmail.com</p>
                         </div>
                     </div>
                     <div className="col-lg-5">

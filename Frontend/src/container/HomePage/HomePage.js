@@ -1,20 +1,37 @@
 import React from "react";
+import HomeBanner from "../../components/HomeFeature/HomeBanner";
+import MainFeature from "..//../components/HomeFeature/MainFeature";
+import ProductFeature from "..//..//components/HomeFeature/ProductFeature";
+import NewProductFeature from "..//../components/HomeFeature/NewProductFeature";
+import HomeBlog from "..//../components/HomeFeature/HomeBlog";
 
 export default function HomePage() {
   return (
     <div className="home-page">
-      <section className="hero" style={{padding:"60px 0", textAlign:"center", background:"#fafafa"}}>
-        <h1>Chào mừng đến với FashionWeb</h1>
-        <p>Mua sắm thời trang dễ dàng, nhanh chóng và tiện lợi.</p>
+      {/* Banner chính */}
+      <HomeBanner />
+
+      {/* USP / lý do chọn shop (component) */}
+      <section className="container" style={{ padding: "32px 0" }}>
+        <MainFeature />
       </section>
 
-      <section className="features container" style={{padding:"40px 0"}}>
-        <h2>Sản phẩm nổi bật</h2>
-        <div style={{display:"flex", gap:20, marginTop:20}}>
-          <div style={{flex:1, border:"1px solid #ddd", padding:20}}>Sản phẩm A</div>
-          <div style={{flex:1, border:"1px solid #ddd", padding:20}}>Sản phẩm B</div>
-          <div style={{flex:1, border:"1px solid #ddd", padding:20}}>Sản phẩm C</div>
-        </div>
+      {/* Sản phẩm nổi bật */}
+      <section className="container" style={{ padding: "24px 0" }}>
+        <h2 style={{ marginBottom: 16 }}>Sản phẩm nổi bật</h2>
+        <ProductFeature />
+      </section>
+
+      {/* Sản phẩm mới */}
+      <section className="container" style={{ padding: "24px 0" }}>
+        <h2 style={{ marginBottom: 16 }}>Hàng mới về</h2>
+        <NewProductFeature />
+      </section>
+
+      {/* Blog / tin tức */}
+      <section className="container" style={{ padding: "24px 0 40px" }}>
+        <h2 style={{ marginBottom: 16 }}>Bài viết mới</h2>
+        <HomeBlog />
       </section>
     </div>
   );

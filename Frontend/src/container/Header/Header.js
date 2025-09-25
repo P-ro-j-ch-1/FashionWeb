@@ -1,48 +1,147 @@
 import React from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.scss";
+import TopMenu from "./TopMenu";
 
-export default function Header() {
-  const navigate = useNavigate();
+const Header = (props) => {
+    
 
-  let user = null;
-  try {
-    const raw = localStorage.getItem("userData");
-    if (raw) user = JSON.parse(raw);
-  } catch {}
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userData");
-    navigate("/login", { replace: true });
-  };
-
-  return (
-    <header className="main_menu" style={{borderBottom:"1px solid #eee"}}>
-      <div className="container d-flex align-items-center justify-content-between" style={{height:60}}>
-        <Link to="/" className="logo" style={{fontWeight:700, textDecoration:"none", color:"#222"}}>
-          FashionWeb
-        </Link>
-
-        <nav className="d-flex align-items-center" style={{gap:16}}>
-          <NavLink to="/" end>Trang chủ</NavLink>
-          <NavLink to="/shop">Cửa hàng</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
-          <NavLink to="/cart">Giỏ hàng</NavLink>
-
-          {user ? (
-            <div className="d-flex align-items-center" style={{gap:12}}>
-              <NavLink to="/user">Xin chào, {user.firstName || "User"}</NavLink>
-              {user.roleId === "R1" && <NavLink to="/admin">Admin</NavLink>}
-              <button onClick={logout} className="btn btn-link p-0" style={{cursor:"pointer"}}>
-                Đăng xuất
-              </button>
+    return (
+        <header className="header_area">
+            <TopMenu  />
+            <div className="main_menu">
+                <div className="container">
+                    <nav className="navbar navbar-expand-lg navbar-light w-100">
+                        {/* Brand and toggle get grouped for better mobile display */}
+                        <NavLink to="/" className="navbar-brand logo_h">
+                            <img src="/resources/img/logo.png" alt="" />
+                        </NavLink>
+                        <button
+                            className="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span className="icon-bar" />
+                            <span className="icon-bar" />
+                            <span className="icon-bar" />
+                        </button>
+                        {/* Collect the nav links, forms, and other content for toggling */}
+                        <div
+                            className="collapse navbar-collapse offset w-100"
+                            id="navbarSupportedContent"
+                        >
+                            <div className="row w-100 mr-0">
+                                <div className="col-lg-9 pr-0">
+                                    <ul className="nav navbar-nav center_nav pull-right">
+                                        <li className="nav-item">
+                                            <NavLink
+                                                exact
+                                                to="/"
+                                                className="nav-link"
+                                                activeClassName="selected"
+                                                activeStyle={{
+                                                    color: "#71cd14",
+                                                }}
+                                            >
+                                                Trang chủ
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item ">
+                                            <NavLink
+                                                to="/shop"
+                                                className="nav-link"
+                                                activeClassName="selected"
+                                                activeStyle={{
+                                                    color: "#71cd14",
+                                                }}
+                                            >
+                                                Cửa hàng
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item ">
+                                            <NavLink
+                                                to="/blog"
+                                                className="nav-link"
+                                                activeClassName="selected"
+                                                activeStyle={{
+                                                    color: "#71cd14",
+                                                }}
+                                            >
+                                                Tin tức
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink
+                                                to="/voucher"
+                                                className="nav-link"
+                                                activeClassName="selected"
+                                                activeStyle={{
+                                                    color: "#71cd14",
+                                                }}
+                                            >
+                                                Giảm giá
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink
+                                                to="/about"
+                                                className="nav-link"
+                                                activeClassName="selected"
+                                                activeStyle={{
+                                                    color: "#71cd14",
+                                                }}
+                                            >
+                                                Giới thiệu
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="col-lg-3 pr-0">
+                                    <ul className="nav navbar-nav navbar-right right_nav pull-right">
+                                        <li className="nav-item">
+                                            <Link
+                                                to={"/user/messenger"}
+                                                className="icons"
+                                            >
+                                                <i class="fa-brands fa-facebook-messenger"></i>
+                                            </Link>
+                                            
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                to={"/shopcart"}
+                                                className="icons"
+                                            >
+                                                <i className="ti-shopping-cart" />
+                                            </Link>
+                                            <span className="box-quantity-cart">
+                                                {}
+                                            </span>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                
+                                                className="icons"
+                                            >
+                                                <i
+                                                    className="ti-user"
+                                                    aria-hidden="true"
+                                                />
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
-          ) : (
-            <NavLink to="/login">Đăng nhập</NavLink>
-          )}
-        </nav>
-      </div>
-    </header>
-  );
-}
+        </header>
+    );
+};
+
+export default Header;

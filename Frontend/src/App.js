@@ -4,6 +4,8 @@ import Header from "./container/Header/Header";
 import Footer from "./container/Footer/Footer";
 import HomePage from "./container/HomePage/HomePage";
 import "./css/App.css";
+import LoginWebPage from "./container/Login/LoginWebPage";
+
 
 export default function App() {
   return (
@@ -12,7 +14,14 @@ export default function App() {
       <main className="container" style={{ minHeight: "70vh", padding: "24px 0" }}>
         <Routes>
           <Route index element={<HomePage />} />
-          {/* Các route khác thêm sau: shop, product/:id, blog, cart, ... */}
+          <Route
+                    path="/login"
+                    element={
+                        <>
+                            <LoginWebPage />
+                        </>
+                    }
+                />
         </Routes>
       </main>
       <Footer />

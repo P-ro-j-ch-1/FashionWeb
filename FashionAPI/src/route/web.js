@@ -31,6 +31,7 @@ let initwebRoutes = (app) => {
     router.get('/api/get-list-allcode', allcodeController.getListAllCodeService)
     router.get('/api/get-detail-all-code-by-id', allcodeController.getDetailAllCodeById)
     router.get('/api/get-all-category-blog', allcodeController.getAllCategoryBlog)
+    return app.use("/", router);
 }
 
 module.exports = initwebRoutes;

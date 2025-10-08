@@ -1,14 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Header.scss";
-import TopMenu from "./TopMenu";
+import TopMenu from "./TopMenu";        
 
 const Header = (props) => {
-    
-
     return (
         <header className="header_area">
-            <TopMenu  />
+            <TopMenu />
             <div className="main_menu">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light w-100">
@@ -119,11 +117,12 @@ const Header = (props) => {
                                                 <i className="ti-shopping-cart" />
                                             </Link>
                                             <span className="box-quantity-cart">
-                                                {}
+                                                
                                             </span>
                                         </li>
                                         <li className="nav-item">
                                             <Link
+                                                
                                                 
                                                 className="icons"
                                             >
@@ -143,5 +142,4 @@ const Header = (props) => {
         </header>
     );
 };
-
 export default Header;

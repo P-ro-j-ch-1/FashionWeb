@@ -1,6 +1,7 @@
 import express from "express";
 import userController from '../controllers/userController';
 import allcodeController from '../controllers/allcodeController';
+import productController from '../controllers/productController';
 import middlewareControllers from '../middlewares/jwtVerify';
 
 let router = express.Router();
@@ -23,6 +24,7 @@ let initwebRoutes = (app) => {
     router.post('/api/forgotpassword-email', userController.handleForgotPassword)
     router.get('/api/check-phonenumber-email', userController.checkPhonenumberEmail)
     router.get('/api/get-detail-user-by-email', userController.getDetailUserByEmail)
+    
     //===================API ALLCODE========================//
     router.post('/api/create-new-all-code', middlewareControllers.verifyTokenAdmin, allcodeController.handleCreateNewAllCode)
     router.put('/api/update-all-code', middlewareControllers.verifyTokenAdmin, allcodeController.handleUpdateAllCode)
@@ -31,6 +33,8 @@ let initwebRoutes = (app) => {
     router.get('/api/get-list-allcode', allcodeController.getListAllCodeService)
     router.get('/api/get-detail-all-code-by-id', allcodeController.getDetailAllCodeById)
     router.get('/api/get-all-category-blog', allcodeController.getAllCategoryBlog)
+
+    //===================API PRODUCT========================//
     router.post('/api/create-new-product', middlewareControllers.verifyTokenAdmin, productController.createNewProduct)
     router.put('/api/update-product', middlewareControllers.verifyTokenAdmin, productController.updateProduct)
     router.get('/api/get-all-product-admin', middlewareControllers.verifyTokenAdmin, productController.getAllProductAdmin)
@@ -55,6 +59,7 @@ let initwebRoutes = (app) => {
     router.delete('/api/delete-product-detail-size', middlewareControllers.verifyTokenAdmin, productController.deleteProductDetailSize)
     router.get('/api/get-product-feature', productController.getProductFeature)
     router.get('/api/get-product-new', productController.getProductNew)
+    
     return app.use("/", router);
 }
 

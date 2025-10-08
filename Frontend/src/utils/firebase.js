@@ -3,13 +3,13 @@ import 'firebase/compat/auth';
 import { getAuth } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 const firebaseConfig = {
-  apiKey: "AIzaSyC6BDR8vZuUHiqt7VQkhLJ3pxYroNNjntA",
-  authDomain: "ecom-chat-1d35c.firebaseapp.com",
-  projectId: "ecom-chat-1d35c",
-  storageBucket: "ecom-chat-1d35c.appspot.com",
-  messagingSenderId: "517909678281",
-  appId: "1:517909678281:web:ee31dcdc6180e6a3cee518",
-  measurementId: "G-3X0P8VH3KR"
+  apiKey: "AIzaSyBZOS9l0Ia_aD3gMSH-NDVZO8rTAvZXGj8",
+  authDomain: "fashionweb-auth.firebaseapp.com",
+  projectId: "fashionweb-auth",
+  storageBucket: "fashionweb-auth.firebasestorage.app",
+  messagingSenderId: "969946638333",
+  appId: "1:969946638333:web:608c4ef8707a07216a9b94",
+  measurementId: "G-JBG8T8PBQ0"
 };
 
 // Initialize Firebase

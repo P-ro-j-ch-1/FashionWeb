@@ -1,12 +1,76 @@
 import React from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getItemCartStart } from "../../action/ShopCartAction";
+import { listRoomOfUser } from "../../services/userService";
 import "./Header.scss";
-import TopMenu from "./TopMenu";        
+import TopMenu from "./TopMenu";
+import socketIOClient from "socket.io-client";
 
 const Header = (props) => {
+    const [quantityMessage, setquantityMessage] = useState("");
+    const [user, setUser] = useState({});
+    const dispatch = useDispatch();
+    let dataCart = useSelector((state) => state.shopcart.listCartItem);
+    const host = process.env.REACT_APP_BACKEND_URL;
+    const socketRef = useRef();
+    const [id, setId] = useState();
+
+    useEffect(() => {
+        socketRef.current = socketIOClient.connect(host);
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        setUser(userData);
+        if (userData) {
+            dispatch(getItemCartStart(userData.id));
+            socketRef.current.on("getId", (data) => {
+                setId(data);
+            }); // phần này đơn giản để gán id cho mỗi phiên kết nối vào page. Mục đích chính là để phân biệt đoạn nào là của mình đang chat.
+            fetchListRoom(userData.id);
+
+            socketRef.current.on("sendDataServer", (dataGot) => {
+                fetchListRoom(userData.id);
+            });
+            socketRef.current.on("loadRoomServer", (dataGot) => {
+                fetchListRoom(userData.id);
+            });
+            return () => {
+                socketRef.current.disconnect();
+            };
+        }
+    }, []);
+    let scrollHeader = () => {
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector(".main_menu");
+            if (header) {
+                header.classList.toggle("sticky", window.scrollY > 0);
+            }
+        });
+    };
+    let fetchListRoom = async (userId) => {
+        let res = await listRoomOfUser(userId);
+        if (res && res.errCode == 0) {
+            let count = 0;
+            if (
+                res.data &&
+                res.data.length > 0 &&
+                res.data[0].messageData &&
+                res.data[0].messageData.length > 0
+            ) {
+                res.data[0].messageData.forEach((item) => {
+                    if (item.unRead === 1 && item.userId !== userId)
+                        count = count + 1;
+                });
+            }
+
+            setquantityMessage(count);
+        }
+    };
+    scrollHeader();
+
     return (
         <header className="header_area">
-            <TopMenu />
+            <TopMenu user={user && user} />
             <div className="main_menu">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light w-100">
@@ -107,7 +171,11 @@ const Header = (props) => {
                                             >
                                                 <i class="fa-brands fa-facebook-messenger"></i>
                                             </Link>
-                                            
+                                            {quantityMessage > 0 && (
+                                                <span className="box-message-quantity">
+                                                    {quantityMessage}
+                                                </span>
+                                            )}
                                         </li>
                                         <li className="nav-item">
                                             <Link
@@ -117,13 +185,16 @@ const Header = (props) => {
                                                 <i className="ti-shopping-cart" />
                                             </Link>
                                             <span className="box-quantity-cart">
-                                                
+                                                {dataCart && dataCart.length}
                                             </span>
                                         </li>
                                         <li className="nav-item">
                                             <Link
-                                                
-                                                
+                                                to={`/user/detail/${
+                                                    user && user.id
+                                                        ? user.id
+                                                        : ""
+                                                }`}
                                                 className="icons"
                                             >
                                                 <i
@@ -142,4 +213,5 @@ const Header = (props) => {
         </header>
     );
 };
+
 export default Header;

@@ -5,13 +5,53 @@ import axios from "../axios";
 const createNewUser = (data) => {
     return axios.post(`/api/create-new-user`, data)
 }
-
-
 const handleLoginService = (data) => {
     return axios.post(`/api/login`, data)
 }
 const checkPhonenumberEmail = (data) => {
     return axios.get(`/api/check-phonenumber-email?phonenumber=${data.phonenumber}&email=${data.email}`)
+}
+const UpdateUserService = (data) => {
+    return axios.put(`/api/update-user`, data)
+}
+const getDetailUserById = (id) => {
+    return axios.get(`/api/get-detail-user-by-id?id=${id}`)
+}
+const handleSendVerifyEmail = (data) => {
+    return axios.post(`/api/send-verify-email`, data)
+}
+const handleChangePassword = (data) => {
+    return axios.post(`/api/changepassword`, data)
+}
+const getAllUsers = (data) => {
+    return axios.get(`/api/get-all-user?limit=${data.limit}&offset=${data.offset}&keyword=${data.keyword}`)
+
+}
+const DeleteUserService = (userId) => {
+    return axios.delete(`/api/delete-user`, {
+        data: {
+            id: userId
+        }
+    })
+}
+
+//==================ADDRESS USER==========================//
+
+const createNewAddressUserrService = (data) => {
+    return axios.post(`/api/create-new-address-user`, data)
+}
+const deleteAddressUserService = (data) => {
+    return axios.delete(`/api/delete-address-user`, data)
+}
+const editAddressUserService = (data) => {
+    return axios.put(`/api/edit-address-user`, data)
+}
+const getAllAddressUserByUserIdService = (userId) => {
+    return axios.get(`/api/get-all-address-user?userId=${userId}`)
+}
+const getDetailAddressUserByIdService = (id) => {
+    return axios.get(`/api/get-detail-address-user-by-id?id=${id}`)
+
 }
 
 //==================ALLCODE==========================//
@@ -36,7 +76,6 @@ const UpdateProductService = (data) => {
 }
 const getAllProductAdmin = (data) => {
     return axios.get(`/api/get-all-product-admin?limit=${data.limit}&offset=${data.offset}&sortPrice=${data.sortPrice}&sortName=${data.sortName}&categoryId=${data.categoryId}&brandId=${data.brandId}&keyword=${data.keyword}`)
-
 }
 const handleBanProductService = (data) => {
     return axios.post(`/api/unactive-product`, data)
@@ -104,6 +143,38 @@ const getStatisticByDay = (data) => {
     return axios.get(`/api/get-statistic-by-day?year=${data.year}&month=${data.month}`)
 }
 
+//======================VOUCHER========================//
+const getAllVoucherByUserIdService = (data) => {
+    return axios.get(`/api/get-all-voucher-by-userid?limit=${data.limit}&offset=${data.offset}&id=${data.id}`)
+}
+
+//======================ORDER========================//
+const paymentOrderSuccessService = (data) => {
+    return axios.post(`/api/payment-order-success`, data)
+}
+const updateStatusOrderService = (data) => {
+    return axios.put(`/api/update-status-order`, data)
+}
+
+const getAllOrdersByUser = (userId) => {
+    return axios.get(`/api/get-all-order-by-user?userId=${userId}`)
+}
+
+//======================SHOPCART========================//
+const addShopCartService = (data) => {
+    return axios.post(`/api/add-shopcart`, data)
+}
+const getAllShopCartByUserIdService = (id) => {
+    return axios.get(`/api/get-all-shopcart-by-userId?id=${id}`)
+}
+const deleteItemShopCartService = (data) => {
+    return axios.delete(`/api/delete-item-shopcart`, data)
+}
+
+const listRoomOfUser = (userId) => {
+    return axios.get(`/api/listRoomOfUser?userId=${userId}`)
+
+}
 
 export {
     createNewUser, handleLoginService, checkPhonenumberEmail, getAllCodeService, getAllProductUser,CreateNewProduct,
@@ -112,5 +183,9 @@ export {
     UpdateProductDetailService, getAllProductDetailByIdService, DeleteProductDetailService, getProductDetailImageByIdService,
     getProductDetailSizeByIdService, getAllProductDetailImageByIdService, createNewProductImageService, UpdateProductDetailImageService,
     DeleteProductDetailImageService, getAllProductDetailSizeByIdService, createNewProductSizeService, UpdateProductDetailSizeService,
-    DeleteProductDetailSizeService, handleActiveProductService
+    DeleteProductDetailSizeService, handleActiveProductService, getAllVoucherByUserIdService, paymentOrderSuccessService,
+    updateStatusOrderService, getAllOrdersByUser, UpdateUserService, getDetailUserById, handleSendVerifyEmail,
+    createNewAddressUserrService, deleteAddressUserService, editAddressUserService, getAllAddressUserByUserIdService, 
+    getDetailAddressUserByIdService, addShopCartService, getAllShopCartByUserIdService, deleteItemShopCartService,
+    listRoomOfUser, handleChangePassword, DeleteUserService, getAllUsers
 }

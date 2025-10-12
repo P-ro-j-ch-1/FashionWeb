@@ -1,22 +1,21 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import "./css/App.css";
 import Header from "./container/Header/Header";
 import Footer from "./container/Footer/Footer";
 import HomePage from "./container/HomePage/HomePage";
-import "./css/App.css";
-import LoginWebPage from "./container/Login/LoginWebPage";
 import ShopPage from "./container/Shop/ShopPage";
 import HomePageAdmin from "./container/System/HomePageAdmin";
-import { Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Navigate } from "react-router";
+import LoginWebPage from "./container/Login/LoginWebPage";
+import UserHomePage from "./container/User/UserHomePage";
 
 
-export default function App() {
-  return (
-    <div className="app">
-      
-      <main className="container" >
-        <Routes>
-          <Route
+function App() {
+    return (
+        <Router>
+            <Routes>
+                {/* Public Routes */}
+                <Route
                     path="/"
                     element={
                         <>
@@ -26,17 +25,7 @@ export default function App() {
                         </>
                     }
                 />
-          <Route
-                    path="/login"
-                    element={
-                        <>
-                            <Header />
-                            <LoginWebPage />
-                            <Footer />
-                        </>
-                    }
-                />
-          <Route
+                <Route
                     path="/shop"
                     element={
                         <>
@@ -46,7 +35,19 @@ export default function App() {
                         </>
                     }
                 />
-          {/* Protected Routes */}
+                
+                <Route
+                    path="/login"
+                    element={
+                        <>
+                            <Header />
+                            <LoginWebPage />
+                            <Footer />
+                        </>
+                    }
+                />
+                
+                {/* Protected Routes */}
                 <Route
                     path="/admin/*"
                     element={
@@ -61,9 +62,24 @@ export default function App() {
                         )
                     }
                 />
-        </Routes>
-      </main>
-      
-    </div>
-  );
+                <Route
+                    path="/user/*"
+                    element={
+                        JSON.parse(localStorage.getItem("userData")) ? (
+                            <>
+                                <Header />
+                                <UserHomePage />
+                                <Footer />
+                            </>
+                        ) : (
+                            <Navigate to="/login" />
+                        )
+                    }
+                />
+                
+            </Routes>
+        </Router>
+    );
 }
+
+export default App;

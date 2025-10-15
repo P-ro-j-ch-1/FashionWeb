@@ -128,6 +128,9 @@ const UpdateProductDetailSizeService = (data) => {
 const DeleteProductDetailSizeService = (data) => {
     return axios.delete(`/api/delete-product-detail-size`, data)
 }
+const getProductRecommendService = (data) => {
+    return axios.get(`/api/get-product-recommend?userId=${data.userId}&limit=${data.limit}`)
+}
 
 //======================STATISTIC========================//
 const getCountCardStatistic = () => {
@@ -176,6 +179,24 @@ const listRoomOfUser = (userId) => {
 
 }
 
+//======================TYPE SHIP========================//
+const getAllTypeShip = (data) => {
+    return axios.get(`/api/get-all-typeship?limit=${data.limit}&offset=${data.offset}&keyword=${data.keyword}`)
+}
+
+const createNewReviewService = (data) => {
+    return axios.post(`/api/create-new-review`, data)
+}
+const getAllReviewByProductIdService = (id) => {
+    return axios.get(`/api/get-all-review-by-productId?id=${id}`)
+}
+const ReplyReviewService = (data) => {
+    return axios.post(`/api/reply-review`, data)
+}
+const deleteReviewService = (data) => {
+    return axios.delete(`/api/delete-review`, data)
+}
+
 export {
     createNewUser, handleLoginService, checkPhonenumberEmail, getAllCodeService, getAllProductUser,CreateNewProduct,
     getDetailProductByIdService, UpdateProductService, getAllProductAdmin, handleBanProductService, getCountCardStatistic,
@@ -187,5 +208,6 @@ export {
     updateStatusOrderService, getAllOrdersByUser, UpdateUserService, getDetailUserById, handleSendVerifyEmail,
     createNewAddressUserrService, deleteAddressUserService, editAddressUserService, getAllAddressUserByUserIdService, 
     getDetailAddressUserByIdService, addShopCartService, getAllShopCartByUserIdService, deleteItemShopCartService,
-    listRoomOfUser, handleChangePassword, DeleteUserService, getAllUsers
+    listRoomOfUser, handleChangePassword, DeleteUserService, getAllUsers, getAllTypeShip, getProductRecommendService,
+    createNewReviewService, getAllReviewByProductIdService, ReplyReviewService, deleteReviewService
 }

@@ -1,9 +1,10 @@
-
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { addItemCartStart } from '../../action/ShopCartAction';
 import CommonUtils from '../../utils/CommonUtils';
 import './ItemProduct.scss';
-
+// độ phân giải ảnh có thể làm vỡ layout
 function ItemProduct(props) {
 
 
@@ -14,7 +15,7 @@ function ItemProduct(props) {
                     <div style={{ width: props.width, height: props.height }} className="product-img">
                         <img className="img-fluid w-100" src={props.img} alt="" />
                         <div className="p_icon">
-                            <a>
+                            <a >
                                 <i className="ti-eye" />
                             </a>
                             <a >

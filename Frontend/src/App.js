@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router";
 import LoginWebPage from "./container/Login/LoginWebPage";
 import UserHomePage from "./container/User/UserHomePage";
+import ShopCartPage from "./container/ShopCart/ShopCartPage";
+import DetailProductPage from "./container/DetailProduct/DetailProductPage";
 
 
 function App() {
@@ -76,7 +78,26 @@ function App() {
                         )
                     }
                 />
-                
+                <Route
+                    path="/shopcart"
+                    element={
+                        <>
+                            <Header />
+                            <ShopCartPage />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/detail-product/:id"
+                    element={
+                        <>
+                            <Header />
+                            <DetailProductPage />
+                            <Footer />
+                        </>
+                    }
+                />
             </Routes>
         </Router>
     );

@@ -2,6 +2,8 @@ import express from "express";
 import userController from '../controllers/userController';
 import allcodeController from '../controllers/allcodeController';
 import productController from '../controllers/productController';
+import shopCartController from '../controllers/shopCartController';
+import supplierController from '../controllers/supplierController';
 import middlewareControllers from '../middlewares/jwtVerify';
 
 let router = express.Router();
@@ -59,6 +61,22 @@ let initwebRoutes = (app) => {
     router.delete('/api/delete-product-detail-size', middlewareControllers.verifyTokenAdmin, productController.deleteProductDetailSize)
     router.get('/api/get-product-feature', productController.getProductFeature)
     router.get('/api/get-product-new', productController.getProductNew)
+    router.get('/api/get-product-shopcart', productController.getProductShopCart)
+    router.get('/api/get-product-recommend', productController.getProductRecommend)
+
+    //===================API SHOPCART========================//
+    router.post('/api/add-shopcart', middlewareControllers.verifyTokenUser, shopCartController.addShopCart)
+    router.get('/api/get-all-shopcart-by-userId', middlewareControllers.verifyTokenUser, shopCartController.getAllShopCartByUserId)
+    router.delete('/api/delete-item-shopcart', middlewareControllers.verifyTokenUser, shopCartController.deleteItemShopCart)
+
+    //===================API SUPPLIER========================//
+    router.post('/api/create-new-supplier', middlewareControllers.verifyTokenAdmin, supplierController.createNewSupplier)
+    router.get('/api/get-detail-supplier', supplierController.getDetailSupplierById)
+    router.get('/api/get-all-supplier', supplierController.getAllSupplier)
+    router.put('/api/update-supplier', middlewareControllers.verifyTokenAdmin, supplierController.updateSupplier)
+    router.delete('/api/delete-supplier', middlewareControllers.verifyTokenAdmin, supplierController.deleteSupplier)
+
+
     
     return app.use("/", router);
 }

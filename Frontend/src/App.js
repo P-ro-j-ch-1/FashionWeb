@@ -10,7 +10,8 @@ import LoginWebPage from "./container/Login/LoginWebPage";
 import UserHomePage from "./container/User/UserHomePage";
 import ShopCartPage from "./container/ShopCart/ShopCartPage";
 import DetailProductPage from "./container/DetailProduct/DetailProductPage";
-
+import OrderHomePage from "./container/Order/OrderHomePage";
+import TopMenu from "./container/Header/TopMenu";
 
 function App() {
     return (
@@ -94,6 +95,16 @@ function App() {
                         <>
                             <Header />
                             <DetailProductPage />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/order/:userId"
+                    element={
+                        <>
+                            <TopMenu />
+                            <OrderHomePage />
                             <Footer />
                         </>
                     }

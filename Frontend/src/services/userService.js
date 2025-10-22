@@ -158,9 +158,14 @@ const paymentOrderSuccessService = (data) => {
 const updateStatusOrderService = (data) => {
     return axios.put(`/api/update-status-order`, data)
 }
-
 const getAllOrdersByUser = (userId) => {
     return axios.get(`/api/get-all-order-by-user?userId=${userId}`)
+}
+const createNewOrderService = (data) => {
+    return axios.post(`/api/create-new-order`, data)
+}
+const paymentOrderService = (data) => {
+    return axios.post(`/api/payment-order`, data)
 }
 
 //======================SHOPCART========================//
@@ -209,5 +214,6 @@ export {
     createNewAddressUserrService, deleteAddressUserService, editAddressUserService, getAllAddressUserByUserIdService, 
     getDetailAddressUserByIdService, addShopCartService, getAllShopCartByUserIdService, deleteItemShopCartService,
     listRoomOfUser, handleChangePassword, DeleteUserService, getAllUsers, getAllTypeShip, getProductRecommendService,
-    createNewReviewService, getAllReviewByProductIdService, ReplyReviewService, deleteReviewService
+    createNewReviewService, getAllReviewByProductIdService, ReplyReviewService, deleteReviewService,createNewOrderService,
+    paymentOrderService
 }

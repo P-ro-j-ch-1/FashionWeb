@@ -8,6 +8,8 @@ import middlewareControllers from '../middlewares/jwtVerify';
 import receiptController from '../controllers/receiptController';
 import orderController from '../controllers/orderController';
 import addressUserController from '../controllers/addressUserController';
+import typeshipController from '../controllers/typeshipController';
+
 let router = express.Router();
 
 let initwebRoutes = (app) => {
@@ -70,6 +72,13 @@ let initwebRoutes = (app) => {
     router.post('/api/add-shopcart', middlewareControllers.verifyTokenUser, shopCartController.addShopCart)
     router.get('/api/get-all-shopcart-by-userId', middlewareControllers.verifyTokenUser, shopCartController.getAllShopCartByUserId)
     router.delete('/api/delete-item-shopcart', middlewareControllers.verifyTokenUser, shopCartController.deleteItemShopCart)
+
+     //=================API TYPESHIP =======================//
+    router.post('/api/create-new-typeship', middlewareControllers.verifyTokenAdmin, typeshipController.createNewTypeShip)
+    router.get('/api/get-detail-typeship', typeshipController.getDetailTypeshipById)
+    router.get('/api/get-all-typeship', typeshipController.getAllTypeship)
+    router.put('/api/update-typeship', middlewareControllers.verifyTokenAdmin, typeshipController.updateTypeship)
+    router.delete('/api/delete-typeship', middlewareControllers.verifyTokenAdmin, typeshipController.deleteTypeship)
 
     //=================API ORDER=============================//
     router.post('/api/create-new-order', middlewareControllers.verifyTokenUser, orderController.createNewOrder)

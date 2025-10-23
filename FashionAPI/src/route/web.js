@@ -5,6 +5,7 @@ import productController from '../controllers/productController';
 import shopCartController from '../controllers/shopCartController';
 import supplierController from '../controllers/supplierController';
 import middlewareControllers from '../middlewares/jwtVerify';
+import receiptController from '../controllers/receiptController';
 
 let router = express.Router();
 
@@ -76,8 +77,14 @@ let initwebRoutes = (app) => {
     router.put('/api/update-supplier', middlewareControllers.verifyTokenAdmin, supplierController.updateSupplier)
     router.delete('/api/delete-supplier', middlewareControllers.verifyTokenAdmin, supplierController.deleteSupplier)
 
+    //=================API RECEIPT================================//
+    router.post('/api/create-new-receipt', middlewareControllers.verifyTokenAdmin, receiptController.createNewReceipt)
+    router.get('/api/get-detail-receipt', receiptController.getDetailReceiptById)
+    router.get('/api/get-all-receipt', receiptController.getAllReceipt)
+    router.put('/api/update-receipt', middlewareControllers.verifyTokenAdmin, receiptController.updateReceipt)
+    router.delete('/api/delete-receipt', middlewareControllers.verifyTokenAdmin, receiptController.deleteReceipt)
+    router.post('/api/create-new-detail-receipt', middlewareControllers.verifyTokenAdmin, receiptController.createNewReceiptDetail)
 
-    
     return app.use("/", router);
 }
 

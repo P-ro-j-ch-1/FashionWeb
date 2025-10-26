@@ -12,6 +12,9 @@ import ShopCartPage from "./container/ShopCart/ShopCartPage";
 import DetailProductPage from "./container/DetailProduct/DetailProductPage";
 import OrderHomePage from "./container/Order/OrderHomePage";
 import TopMenu from "./container/Header/TopMenu";
+import PaymentSuccess from "./container/User/PaymentSuccess";
+import VnpayPaymentPage from "./container/Order/VnpayPaymentPage";
+import VnpayPaymentSuccess from "./container/Order/VnpayPaymentSuccess";
 
 function App() {
     return (
@@ -50,6 +53,36 @@ function App() {
                     }
                 />
                 
+                <Route
+                    path="/payment/success"
+                    element={
+                        <>
+                            <Header />
+                            <PaymentSuccess />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/payment/vnpay"
+                    element={
+                        <>
+                            <TopMenu />
+                            <VnpayPaymentPage />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/payment/vnpay_return"
+                    element={
+                        <>
+                            <TopMenu />
+                            <VnpayPaymentSuccess />
+                            <Footer />
+                        </>
+                    }
+                />
                 {/* Protected Routes */}
                 <Route
                     path="/admin/*"

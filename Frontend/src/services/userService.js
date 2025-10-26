@@ -133,6 +133,7 @@ const getProductRecommendService = (data) => {
 }
 
 //======================STATISTIC========================//
+
 const getCountCardStatistic = () => {
     return axios.get(`/api/get-count-card-statistic`)
 }
@@ -147,11 +148,13 @@ const getStatisticByDay = (data) => {
 }
 
 //======================VOUCHER========================//
+
 const getAllVoucherByUserIdService = (data) => {
     return axios.get(`/api/get-all-voucher-by-userid?limit=${data.limit}&offset=${data.offset}&id=${data.id}`)
 }
 
 //======================ORDER========================//
+
 const paymentOrderSuccessService = (data) => {
     return axios.post(`/api/payment-order-success`, data)
 }
@@ -167,8 +170,24 @@ const createNewOrderService = (data) => {
 const paymentOrderService = (data) => {
     return axios.post(`/api/payment-order`, data)
 }
+const getAllOrder = (data) => {
+    return axios.get(`/api/get-all-order?limit=${data.limit}&offset=${data.offset}&statusId=${data.statusId}`)
+}
+const getDetailOrder = (id) => {
+    return axios.get(`/api/get-detail-order?id=${id}`)
+}
+const paymentOrderVnpayService = (data) => {
+    return axios.post(`/api/payment-order-vnpay`, data)
+}
+const paymentOrderVnpaySuccessService = (data) => {
+    return axios.post(`/api/payment-order-vnpay-success`, data)
+}
+const confirmOrderVnpay = (data) => {
+    return axios.post(`/api/vnpay_return`, data)
+}
 
 //======================SHOPCART========================//
+
 const addShopCartService = (data) => {
     return axios.post(`/api/add-shopcart`, data)
 }
@@ -185,6 +204,7 @@ const listRoomOfUser = (userId) => {
 }
 
 //======================TYPE SHIP========================//
+
 const getAllTypeShip = (data) => {
     return axios.get(`/api/get-all-typeship?limit=${data.limit}&offset=${data.offset}&keyword=${data.keyword}`)
 }
@@ -202,6 +222,45 @@ const deleteReviewService = (data) => {
     return axios.delete(`/api/delete-review`, data)
 }
 
+//======================SUPPLIER========================//
+
+const getAllSupplier = (data) => {
+    return axios.get(`/api/get-all-supplier?limit=${data.limit}&offset=${data.offset}&keyword=${data.keyword}`)
+}
+const createNewSupplierService = (data) => {
+    return axios.post(`/api/create-new-supplier`, data)
+}
+const updateSupplierService = (data) => {
+    return axios.put(`/api/update-supplier`, data)
+}
+const deleteSupplierService = (data) => {
+    return axios.delete(`/api/delete-supplier`, data)
+}
+const getDetailSupplierByIdService = (id) => {
+    return axios.get(`/api/get-detail-supplier?id=${id}`)
+}
+
+//======================RECEIPT========================//
+
+const getAllReceipt = (data) => {
+    return axios.get(`/api/get-all-receipt?limit=${data.limit}&offset=${data.offset}`)
+}
+const createNewReceiptService = (data) => {
+    return axios.post(`/api/create-new-receipt`, data)
+}
+const updateReceiptService = (data) => {
+    return axios.put(`/api/update-receipt`, data)
+}
+const deleteReceiptService = (data) => {
+    return axios.delete(`/api/delete-receipt`, data)
+}
+const getDetailReceiptByIdService = (id) => {
+    return axios.get(`/api/get-detail-receipt?id=${id}`)
+}
+const createNewReceiptDetailService = (data) => {
+    return axios.post(`/api/create-new-detail-receipt`, data)
+}
+
 export {
     createNewUser, handleLoginService, checkPhonenumberEmail, getAllCodeService, getAllProductUser,CreateNewProduct,
     getDetailProductByIdService, UpdateProductService, getAllProductAdmin, handleBanProductService, getCountCardStatistic,
@@ -215,5 +274,8 @@ export {
     getDetailAddressUserByIdService, addShopCartService, getAllShopCartByUserIdService, deleteItemShopCartService,
     listRoomOfUser, handleChangePassword, DeleteUserService, getAllUsers, getAllTypeShip, getProductRecommendService,
     createNewReviewService, getAllReviewByProductIdService, ReplyReviewService, deleteReviewService,createNewOrderService,
-    paymentOrderService
+    paymentOrderService, getAllOrder, getDetailOrder, getAllSupplier, createNewReceiptService, deleteSupplierService,
+    updateSupplierService, createNewSupplierService, getDetailSupplierByIdService, getAllReceipt, updateReceiptService,
+    deleteReceiptService, getDetailReceiptByIdService, createNewReceiptDetailService, paymentOrderVnpayService, 
+    paymentOrderVnpaySuccessService, confirmOrderVnpay
 }

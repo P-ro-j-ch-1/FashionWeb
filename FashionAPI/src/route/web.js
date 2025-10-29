@@ -9,6 +9,7 @@ import receiptController from '../controllers/receiptController';
 import orderController from '../controllers/orderController';
 import addressUserController from '../controllers/addressUserController';
 import typeshipController from '../controllers/typeshipController';
+import voucherController from '../controllers/voucherController';
 
 let router = express.Router();
 
@@ -94,6 +95,23 @@ let initwebRoutes = (app) => {
     router.post('/api/payment-order-vnpay', middlewareControllers.verifyTokenUser, orderController.paymentOrderVnpay)
     router.post('/api/vnpay_return', orderController.confirmOrderVnpay)
     router.put('/api/update-image-order', orderController.updateImageOrder)
+
+    //================API TYPEVOUCHER======================//
+    router.post('/api/create-new-typevoucher', middlewareControllers.verifyTokenAdmin, voucherController.createNewTypeVoucher)
+    router.get('/api/get-detail-typevoucher', voucherController.getDetailTypeVoucherById)
+    router.get('/api/get-all-typevoucher', voucherController.getAllTypeVoucher)
+    router.put('/api/update-typevoucher', middlewareControllers.verifyTokenAdmin, voucherController.updateTypeVoucher)
+    router.delete('/api/delete-typevoucher', middlewareControllers.verifyTokenAdmin, voucherController.deleteTypeVoucher)
+    router.get('/api/get-select-typevoucher', voucherController.getSelectTypeVoucher)
+
+    //=================API VOUCHER==========================//
+    router.post('/api/create-new-voucher', middlewareControllers.verifyTokenAdmin, voucherController.createNewVoucher)
+    router.get('/api/get-detail-voucher', voucherController.getDetailVoucherById)
+    router.get('/api/get-all-voucher', voucherController.getAllVoucher)
+    router.put('/api/update-voucher', middlewareControllers.verifyTokenAdmin, voucherController.updateVoucher)
+    router.delete('/api/delete-voucher', middlewareControllers.verifyTokenAdmin, voucherController.deleteVoucher)
+    router.post('/api/save-user-voucher', middlewareControllers.verifyTokenUser, voucherController.saveUserVoucher)
+    router.get('/api/get-all-voucher-by-userid', voucherController.getAllVoucherByUserId)
 
     //=================API ADDRESS USER ======================//
     router.post('/api/create-new-address-user', middlewareControllers.verifyTokenUser, addressUserController.createNewAddressUser)

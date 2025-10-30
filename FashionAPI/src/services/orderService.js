@@ -371,56 +371,7 @@ let getAllOrdersByUser = (userId) => {
         }
     });
 };
-let getAllOrdersByShipper = (data) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            console.log(data.shipperId);
-            let objectFilter = {
-                include: [
-                    { model: db.TypeShip, as: "typeShipData" },
-                    { model: db.Voucher, as: "voucherData" },
-                    { model: db.Allcode, as: "statusOrderData" },
-                ],
-                order: [["createdAt", "DESC"]],
-                raw: true,
-                nest: true,
-                where: { shipperId: data.shipperId },
-            };
 
-            if (data.status && data.status == "working")
-                objectFilter.where = { ...objectFilter.where, statusId: "S5" };
-            if (data.status && data.status == "done")
-                objectFilter.where = { ...objectFilter.where, statusId: "S6" };
-
-            let res = await db.OrderProduct.findAll(objectFilter);
-
-            for (let i = 0; i < res.length; i++) {
-                let addressUser = await db.AddressUser.findOne({
-                    where: { id: res[i].addressUserId },
-                });
-                if (addressUser) {
-                    let user = await db.User.findOne({
-                        where: { id: addressUser.userId },
-                    });
-                    res[i].userData = user;
-                    res[i].addressUser = addressUser;
-                }
-            }
-
-            resolve({
-                errCode: 0,
-                data: res,
-            });
-
-            resolve({
-                errCode: 0,
-                data: addressUser,
-            });
-        } catch (error) {
-            reject(error);
-        }
-    });
-};
 let paymentOrder = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -863,7 +814,6 @@ module.exports = {
     paymentOrder: paymentOrder,
     paymentOrderSuccess: paymentOrderSuccess,
     confirmOrder: confirmOrder,
-    getAllOrdersByShipper: getAllOrdersByShipper,
     paymentOrderVnpay: paymentOrderVnpay,
     confirmOrderVnpay: confirmOrderVnpay,
     paymentOrderVnpaySuccess: paymentOrderVnpaySuccess,

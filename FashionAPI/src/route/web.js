@@ -10,6 +10,7 @@ import orderController from '../controllers/orderController';
 import addressUserController from '../controllers/addressUserController';
 import typeshipController from '../controllers/typeshipController';
 import voucherController from '../controllers/voucherController';
+import statisticController from '../controllers/statisticController';
 
 let router = express.Router();
 
@@ -134,6 +135,15 @@ let initwebRoutes = (app) => {
     router.put('/api/update-receipt', middlewareControllers.verifyTokenAdmin, receiptController.updateReceipt)
     router.delete('/api/delete-receipt', middlewareControllers.verifyTokenAdmin, receiptController.deleteReceipt)
     router.post('/api/create-new-detail-receipt', middlewareControllers.verifyTokenAdmin, receiptController.createNewReceiptDetail)
+
+    //=================API STATISTIC==============================//
+    router.get('/api/get-count-card-statistic', middlewareControllers.verifyTokenAdmin, statisticController.getCountCardStatistic)
+    router.get('/api/get-count-status-order', middlewareControllers.verifyTokenAdmin, statisticController.getCountStatusOrder)
+    router.get('/api/get-statistic-by-month', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticByMonth)
+    router.get('/api/get-statistic-by-day', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticByDay)
+    router.get('/api/get-statistic-overturn', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticOverturn)
+    router.get('/api/get-statistic-profit', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticProfit)
+    router.get('/api/get-statistic-stock-product', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticStockProduct)
 
     return app.use("/", router);
 }

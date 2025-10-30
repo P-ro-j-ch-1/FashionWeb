@@ -247,6 +247,20 @@ const listRoomOfUser = (userId) => {
 const getAllTypeShip = (data) => {
     return axios.get(`/api/get-all-typeship?limit=${data.limit}&offset=${data.offset}&keyword=${data.keyword}`)
 }
+const createNewTypeShipService = (data) => {
+    return axios.post(`/api/create-new-typeship`, data)
+}
+const updateTypeShipService = (data) => {
+    return axios.put(`/api/update-typeship`, data)
+}
+const deleteTypeShipService = (data) => {
+    return axios.delete(`/api/delete-typeship`, data)
+}
+const getDetailTypeShipByIdService = (id) => {
+    return axios.get(`/api/get-detail-typeship?id=${id}`)
+}
+
+//======================REVIEW========================//
 
 const createNewReviewService = (data) => {
     return axios.post(`/api/create-new-review`, data)
@@ -318,5 +332,6 @@ export {
     deleteReceiptService, getDetailReceiptByIdService, createNewReceiptDetailService, paymentOrderVnpayService, 
     paymentOrderVnpaySuccessService, confirmOrderVnpay, getAllVoucher, saveUserVoucherService, createNewVoucherService,
     updateVoucherService, deleteVoucherService, getDetailVoucherByIdService, createNewTypeVoucherService, updateTypeVoucherService,
-    deleteTypeVoucherService, getDetailTypeVoucherByIdService, getAllTypeVoucher, getSelectTypeVoucher
+    deleteTypeVoucherService, getDetailTypeVoucherByIdService, getAllTypeVoucher, getSelectTypeVoucher, createNewTypeShipService,
+    updateTypeShipService, deleteTypeShipService, getDetailTypeShipByIdService,
 }

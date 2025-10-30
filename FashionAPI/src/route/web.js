@@ -96,7 +96,6 @@ let initwebRoutes = (app) => {
     router.post('/api/payment-order-success', middlewareControllers.verifyTokenUser, orderController.paymentOrderSuccess)
     router.post('/api/payment-order-vnpay-success', middlewareControllers.verifyTokenUser, orderController.paymentOrderVnpaySuccess)
     router.put('/api/confirm-order', orderController.confirmOrder)
-    router.get('/api/get-all-order-by-shipper', orderController.getAllOrdersByShipper)
     router.post('/api/payment-order-vnpay', middlewareControllers.verifyTokenUser, orderController.paymentOrderVnpay)
     router.post('/api/vnpay_return', orderController.confirmOrderVnpay)
     router.put('/api/update-image-order', orderController.updateImageOrder)

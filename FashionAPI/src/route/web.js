@@ -11,6 +11,10 @@ import addressUserController from '../controllers/addressUserController';
 import typeshipController from '../controllers/typeshipController';
 import voucherController from '../controllers/voucherController';
 import statisticController from '../controllers/statisticController';
+import bannerController from '../controllers/bannerController';
+import blogController from '../controllers/blogController';
+import messageController from '../controllers/messageController';
+import commentController from '../controllers/commentController';
 
 let router = express.Router();
 

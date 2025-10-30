@@ -152,6 +152,45 @@ const getStatisticByDay = (data) => {
 const getAllVoucherByUserIdService = (data) => {
     return axios.get(`/api/get-all-voucher-by-userid?limit=${data.limit}&offset=${data.offset}&id=${data.id}`)
 }
+const getAllVoucher = (data) => {
+    return axios.get(`/api/get-all-voucher?limit=${data.limit}&offset=${data.offset}`)
+}
+const saveUserVoucherService = (data) => {
+    return axios.post(`/api/save-user-voucher`, data)
+}
+const createNewVoucherService = (data) => {
+    return axios.post(`/api/create-new-voucher`, data)
+}
+const updateVoucherService = (data) => {
+    return axios.put(`/api/update-voucher`, data)
+}
+const deleteVoucherService = (data) => {
+    return axios.delete(`/api/delete-voucher`, data)
+}
+const getDetailVoucherByIdService = (id) => {
+    return axios.get(`/api/get-detail-voucher?id=${id}`)
+}
+
+//======================TYPE VOUCHER========================//
+
+const createNewTypeVoucherService = (data) => {
+    return axios.post(`/api/create-new-typevoucher`, data)
+}
+const updateTypeVoucherService = (data) => {
+    return axios.put(`/api/update-typevoucher`, data)
+}
+const deleteTypeVoucherService = (data) => {
+    return axios.delete(`/api/delete-typevoucher`, data)
+}
+const getDetailTypeVoucherByIdService = (id) => {
+    return axios.get(`/api/get-detail-typevoucher?id=${id}`)
+}
+const getAllTypeVoucher = (data) => {
+    return axios.get(`/api/get-all-typevoucher?limit=${data.limit}&offset=${data.offset}`)
+}
+const getSelectTypeVoucher = () => {
+    return axios.get(`/api/get-select-typevoucher`)
+}
 
 //======================ORDER========================//
 
@@ -277,5 +316,7 @@ export {
     paymentOrderService, getAllOrder, getDetailOrder, getAllSupplier, createNewReceiptService, deleteSupplierService,
     updateSupplierService, createNewSupplierService, getDetailSupplierByIdService, getAllReceipt, updateReceiptService,
     deleteReceiptService, getDetailReceiptByIdService, createNewReceiptDetailService, paymentOrderVnpayService, 
-    paymentOrderVnpaySuccessService, confirmOrderVnpay
+    paymentOrderVnpaySuccessService, confirmOrderVnpay, getAllVoucher, saveUserVoucherService, createNewVoucherService,
+    updateVoucherService, deleteVoucherService, getDetailVoucherByIdService, createNewTypeVoucherService, updateTypeVoucherService,
+    deleteTypeVoucherService, getDetailTypeVoucherByIdService, getAllTypeVoucher, getSelectTypeVoucher
 }

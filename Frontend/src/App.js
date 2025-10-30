@@ -15,6 +15,7 @@ import TopMenu from "./container/Header/TopMenu";
 import PaymentSuccess from "./container/User/PaymentSuccess";
 import VnpayPaymentPage from "./container/Order/VnpayPaymentPage";
 import VnpayPaymentSuccess from "./container/Order/VnpayPaymentSuccess";
+import VoucherHomePage from "./container/Voucher/VoucherHomePage";
 
 function App() {
     return (
@@ -79,6 +80,16 @@ function App() {
                         <>
                             <TopMenu />
                             <VnpayPaymentSuccess />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/voucher"
+                    element={
+                        <>
+                            <Header />
+                            <VoucherHomePage />
                             <Footer />
                         </>
                     }

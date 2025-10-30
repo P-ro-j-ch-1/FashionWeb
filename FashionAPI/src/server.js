@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import viewEngine from "./config/viewEngine";
 import initwebRoutes from "./route/web";
 import connectDB from "./config/connectDB";
+import { sendMessage } from "./services/messageService";
 import http from "http";
 require("dotenv").config();
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;

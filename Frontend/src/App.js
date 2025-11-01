@@ -16,6 +16,8 @@ import PaymentSuccess from "./container/User/PaymentSuccess";
 import VnpayPaymentPage from "./container/Order/VnpayPaymentPage";
 import VnpayPaymentSuccess from "./container/Order/VnpayPaymentSuccess";
 import VoucherHomePage from "./container/Voucher/VoucherHomePage";
+import BlogPage from "./container/Blog/BlogPage";
+import DetailBlog from "./container/Blog/DetailBlog";
 
 function App() {
     return (
@@ -90,6 +92,26 @@ function App() {
                         <>
                             <Header />
                             <VoucherHomePage />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/blog"
+                    element={
+                        <>
+                            <Header />
+                            <BlogPage />
+                            <Footer />
+                        </>
+                    }
+                />
+                <Route
+                    path="/blog-detail/:id"
+                    element={
+                        <>
+                            <Header />
+                            <DetailBlog />
                             <Footer />
                         </>
                     }

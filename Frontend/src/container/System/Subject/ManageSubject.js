@@ -14,7 +14,7 @@ import {
     Link,
     Redirect
 } from "react-router-dom";
-import FormSearch from '../../../component/Search/FormSearch';
+import FormSearch from '../../../components/Search/FormSearch';
 const ManageSubject = () => {
 
     const [dataSubject, setdataSubject] = useState([])
@@ -172,4 +172,5 @@ const ManageSubject = () => {
         </div>
     )
 }
+
 export default ManageSubject;

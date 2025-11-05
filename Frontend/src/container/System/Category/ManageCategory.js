@@ -14,7 +14,7 @@ import {
     Redirect
 } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
-import FormSearch from '../../../component/Search/FormSearch';
+import FormSearch from '../../../components/Search/FormSearch';
 
 const ManageCategory = () => {
 
@@ -174,4 +174,5 @@ const ManageCategory = () => {
         </div>
     )
 }
+
 export default ManageCategory;

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 import { PAGINATION } from '../../../utils/constant';
 import ReactPaginate from 'react-paginate';
-import FormSearch from '../../../component/Search/FormSearch';
+import FormSearch from '../../../components/Search/FormSearch';
 import CommonUtils from '../../../utils/CommonUtils';
 import {
     BrowserRouter as Router,

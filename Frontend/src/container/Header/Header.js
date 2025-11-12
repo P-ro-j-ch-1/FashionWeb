@@ -13,7 +13,7 @@ const Header = (props) => {
     const [user, setUser] = useState({});
     const dispatch = useDispatch();
     let dataCart = useSelector((state) => state.shopcart.listCartItem);
-    const host = process.env.REACT_APP_BACKEND_URL;
+    const host = process.env.REACT_APP_API_URL;
     const socketRef = useRef();
     const [id, setId] = useState();
 

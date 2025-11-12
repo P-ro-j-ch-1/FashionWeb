@@ -66,3 +66,7 @@ let port = process.env.PORT || 6969;
 server.listen(port, () => {
     console.log("Backend Nodejs is running on the port : " + port);
 });
+
+const express = require('express');
+const cors = require('cors'); 
+app.use(cors());

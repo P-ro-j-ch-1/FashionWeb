@@ -32,7 +32,7 @@ let createNewOrder = (data) => {
                     isPaymentOnlien: data.isPaymentOnlien,
                     statusId: "S3",
                     typeShipId: data.typeShipId,
-                    voucherId: data.voucherId,
+                    voucherId: data.voucherId || null,
                     note: data.note,
                 });
 
@@ -108,20 +108,15 @@ let getAllOrders = (data) => {
                 let addressUser = await db.AddressUser.findOne({
                     where: { id: res.rows[i].addressUserId },
                 });
-                let shipper = await db.User.findOne({
-                    where: { id: res.rows[i].shipperId },
-                });
-
+        
                 if (addressUser) {
                     let user = await db.User.findOne({
                         where: {
                             id: addressUser.userId,
                         },
                     });
-
                     res.rows[i].userData = user;
                     res.rows[i].addressUser = addressUser;
-                    res.rows[i].shipperData = shipper;
                 }
             }
             resolve({

@@ -110,7 +110,6 @@ const ManageOrder = () => {
                                     <th>Mã voucher</th>
                                     <th>Hình thức</th>
                                     <th>Trạng thái</th>
-                                    <th>Shipper</th>
                                     <th>Thao tác</th>
                                 </tr>
                             </thead>
@@ -126,10 +125,9 @@ const ManageOrder = () => {
                                                 <td>{item.userData.email}</td>
                                                 <td>{moment.utc(item.createdAt).local().format('DD/MM/YYYY HH:mm:ss')}</td>
                                                 <td>{item.typeShipData.type}</td>
-                                                <td>{item.voucherData.codeVoucher}</td>
+                                                <td>{item.voucherData ? item.voucherData.codeVoucher : ''}</td>
                                                 <td>{item.isPaymentOnlien == 0 ? 'Thanh toán tiền mặt' : 'Thanh toán online'}</td>
                                                 <td>{item.statusOrderData.value}</td>
-                                                <td>{item.shipperData && item.shipperData.firstName + " " + item.shipperData.lastName + " - " + item.shipperData.phonenumber}</td>
                                                 <td>
                                                     <Link to={`/admin/order-detail/${item.id}`}>Xem chi tiết</Link>
 

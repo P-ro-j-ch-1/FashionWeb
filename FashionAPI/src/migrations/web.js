@@ -35,6 +35,7 @@ let initwebRoutes = (app) => {
     router.post('/api/forgotpassword-email', userController.handleForgotPassword)
     router.get('/api/check-phonenumber-email', userController.checkPhonenumberEmail)
     router.get('/api/get-detail-user-by-email', userController.getDetailUserByEmail)
+
     //===================API ALLCODE========================//
     router.post('/api/create-new-all-code', middlewareControllers.verifyTokenAdmin, allcodeController.handleCreateNewAllCode)
     router.put('/api/update-all-code', middlewareControllers.verifyTokenAdmin, allcodeController.handleUpdateAllCode)
@@ -71,6 +72,7 @@ let initwebRoutes = (app) => {
     router.get('/api/get-product-new', productController.getProductNew)
     router.get('/api/get-product-shopcart', productController.getProductShopCart)
     router.get('/api/get-product-recommend', productController.getProductRecommend)
+    
     //==================API BANNER=============================//
     router.post('/api/create-new-banner', middlewareControllers.verifyTokenAdmin, bannerController.createNewBanner)
     router.get('/api/get-detail-banner', bannerController.getDetailBanner)
@@ -101,6 +103,7 @@ let initwebRoutes = (app) => {
     router.put('/api/update-typevoucher', middlewareControllers.verifyTokenAdmin, voucherController.updateTypeVoucher)
     router.delete('/api/delete-typevoucher', middlewareControllers.verifyTokenAdmin, voucherController.deleteTypeVoucher)
     router.get('/api/get-select-typevoucher', voucherController.getSelectTypeVoucher)
+
     //=================API VOUCHER==========================//
     router.post('/api/create-new-voucher', middlewareControllers.verifyTokenAdmin, voucherController.createNewVoucher)
     router.get('/api/get-detail-voucher', voucherController.getDetailVoucherById)
@@ -109,6 +112,7 @@ let initwebRoutes = (app) => {
     router.delete('/api/delete-voucher', middlewareControllers.verifyTokenAdmin, voucherController.deleteVoucher)
     router.post('/api/save-user-voucher', middlewareControllers.verifyTokenUser, voucherController.saveUserVoucher)
     router.get('/api/get-all-voucher-by-userid', voucherController.getAllVoucherByUserId)
+
     //=================API REVIEW=============================//
     router.post('/api/create-new-review', middlewareControllers.verifyTokenUser, commentController.createNewReview)
     router.post('/api/reply-review', middlewareControllers.verifyTokenAdmin, commentController.ReplyReview)
@@ -130,22 +134,24 @@ let initwebRoutes = (app) => {
     router.post('/api/payment-order-success', middlewareControllers.verifyTokenUser, orderController.paymentOrderSuccess)
     router.post('/api/payment-order-vnpay-success', middlewareControllers.verifyTokenUser, orderController.paymentOrderVnpaySuccess)
     router.put('/api/confirm-order', orderController.confirmOrder)
-    router.get('/api/get-all-order-by-shipper', orderController.getAllOrdersByShipper)
     router.post('/api/payment-order-vnpay', middlewareControllers.verifyTokenUser, orderController.paymentOrderVnpay)
     router.post('/api/vnpay_return', orderController.confirmOrderVnpay)
     router.put('/api/update-image-order', orderController.updateImageOrder)
+
     //=================API ADDRESS USER ======================//
     router.post('/api/create-new-address-user', middlewareControllers.verifyTokenUser, addressUserController.createNewAddressUser)
     router.get('/api/get-all-address-user', middlewareControllers.verifyTokenUser, addressUserController.getAllAddressUserByUserId)
     router.delete('/api/delete-address-user', middlewareControllers.verifyTokenUser, addressUserController.deleteAddressUser)
     router.put('/api/edit-address-user', middlewareControllers.verifyTokenUser, addressUserController.editAddressUser)
     router.get('/api/get-detail-address-user-by-id', middlewareControllers.verifyTokenUser, addressUserController.getDetailAddressUserById)
+
     //=================API MESSAGE============================//
     router.post('/api/create-new-room', middlewareControllers.verifyTokenUser, messageController.createNewRoom)
     router.post('/api/sendMessage', middlewareControllers.verifyTokenUser, messageController.sendMessage)
     router.get('/api/loadMessage', middlewareControllers.verifyTokenUser, messageController.loadMessage)
     router.get('/api/listRoomOfUser', middlewareControllers.verifyTokenUser, messageController.listRoomOfUser)
     router.get('/api/listRoomOfAdmin', middlewareControllers.verifyTokenAdmin, messageController.listRoomOfAdmin)
+
     //==================API COMMENT============================//
     router.post('/api/create-new-comment', middlewareControllers.verifyTokenUser, commentController.createNewComment)
     router.post('/api/reply-comment', middlewareControllers.verifyTokenAdmin, commentController.ReplyComment)
@@ -160,6 +166,7 @@ let initwebRoutes = (app) => {
     router.get('/api/get-statistic-overturn', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticOverturn)
     router.get('/api/get-statistic-profit', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticProfit)
     router.get('/api/get-statistic-stock-product', middlewareControllers.verifyTokenAdmin, statisticController.getStatisticStockProduct)
+
     //=================API SUPPLIER================================//
     router.post('/api/create-new-supplier', middlewareControllers.verifyTokenAdmin, supplierController.createNewSupplier)
     router.get('/api/get-detail-supplier', supplierController.getDetailSupplierById)

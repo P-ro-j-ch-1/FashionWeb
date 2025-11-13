@@ -35,18 +35,18 @@ function MessageDisscution(props) {
   }
   let handleSearchRoom = (roomList) => {
     dataRoom.forEach((item) => {
-      let name = ''
-      if(props.isAdmin === true){
-        name = item.userOneData.firstName + " "+item.userOneData.lastName
-      }else{
-        name = item.userTwoData.firstName + " "+item.userTwoData.lastName
+      let userData = props.isAdmin === true ? item.userOneData : item.userTwoData;
+
+      const name = [userData.firstName, userData.lastName]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+      if (name.indexOf(textSearch.toLowerCase()) !== -1) {
+        roomList.push(item);
       }
-     
-        if (name.toLowerCase().indexOf(textSearch.toLowerCase()) !== -1) {
-          roomList.push(item)
-        }
-    })
-}
+    });
+  }
 let roomList = []
 handleSearchRoom(roomList)
     return (
@@ -84,8 +84,8 @@ handleSearchRoom(roomList)
                     </span>
                     <div className="ks-body">
                       <div className="ks-name">
-                        {userData.firstName +" "+userData.lastName}
-                        <span className="ks-datetime">{item.messageData && item.messageData.length > 0 ? moment(item.messageData[item.messageData.length-1].createdAt).fromNow():''}</span>
+                        { [userData.firstName, userData.lastName].filter(Boolean).join(' ') }
+                        <span className="ks-datetime">{item.messageData && item.messageData.length > 0 ? moment(item.messageData[item.messageData.length-1].createdAt).fromNow(): ''}</span>
                       </div>
                       <div className="ks-message">{item.messageData && item.messageData.length > 0 ? item.messageData[item.messageData.length-1].text :'Chưa có tin nhắn'}</div>
                     </div>

@@ -158,7 +158,7 @@ function OrderHomePage(props) {
                     addressUserId: addressUserId,
                     isPaymentOnlien: activeTypePayment === 1 ? 1 : 0,
                     typeShipId: dataTypeShip.id,
-                    voucherId: dataVoucher.voucherId,
+                    voucherId: dataVoucher ? dataVoucher.voucherId : null,
                     note: note,
                     userId: userId,
                     arrDataShopCart: result,

@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             Allcode.hasMany(models.user, { foreignKey: 'genderId', as: 'genderData' })
             Allcode.hasMany(models.user, { foreignKey: 'roleId', as: 'roleData' })
-            Allcode.hasMany(models.Product, { foreignKey: 'categoryId', as: 'categoryData' })
-            Allcode.hasMany(models.Product, { foreignKey: 'brandId', as: 'brandData' })
-            Allcode.hasMany(models.Product, { foreignKey: 'statusId', as: 'statusData' })
-            Allcode.hasMany(models.Blog, { foreignKey: 'subjectId', as: 'subjectData' })
-            Allcode.hasMany(models.TypeVoucher, { foreignKey: 'typeVoucher', as: 'typeVoucherData' })
-            Allcode.hasMany(models.ProductDetailSize, { foreignKey: 'sizeId', as: 'sizeData' })
-            Allcode.hasMany(models.OrderProduct, { foreignKey: 'statusId', as: 'statusOrderData' })
+            Allcode.hasMany(models.product, { foreignKey: 'categoryId', as: 'categoryData' })
+            Allcode.hasMany(models.product, { foreignKey: 'brandId', as: 'brandData' })
+            Allcode.hasMany(models.product, { foreignKey: 'statusId', as: 'statusData' })
+            Allcode.hasMany(models.blog, { foreignKey: 'subjectId', as: 'subjectData' })
+            Allcode.hasMany(models.typevoucher, { foreignKey: 'typeVoucher', as: 'typeVoucherData' })
+            Allcode.hasMany(models.productdetailSize, { foreignKey: 'sizeId', as: 'sizeData' })
+            Allcode.hasMany(models.orderproduct, { foreignKey: 'statusId', as: 'statusOrderData' })
 
         }
     };
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         code: DataTypes.STRING
     }, {
         sequelize,
-        modelName: 'Allcode',
+        modelName: 'allcode',
     });
     return Allcode;
 };

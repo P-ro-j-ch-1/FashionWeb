@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         shipPhonenumber: DataTypes.STRING,
     }, {
         sequelize,
-        modelName: 'addressUser',
+        modelName: 'addressuser',
     });
     return AddressUser;
 };

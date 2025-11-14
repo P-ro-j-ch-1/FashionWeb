@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            Voucher.belongsTo(models.TypeVoucher, { foreignKey: 'typeVoucherId', targetKey: 'id', as: 'typeVoucherOfVoucherData' })
-            Voucher.hasMany(models.OrderProduct, { foreignKey: 'voucherId', as: 'voucherData' })
+            Voucher.belongsTo(models.typevoucher, { foreignKey: 'typeVoucherId', targetKey: 'id', as: 'typeVoucherOfVoucherData' })
+            Voucher.hasMany(models.orderproduct, { foreignKey: 'voucherId', as: 'voucherData' })
         }
     };
     Voucher.init({
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         codeVoucher: DataTypes.STRING
     }, {
         sequelize,
-        modelName: 'Voucher',
+        modelName: 'voucher',
     });
     return Voucher;
 };

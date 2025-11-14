@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         view:DataTypes.INTEGER
     }, {
         sequelize,
-        modelName: 'Blog',
+        modelName: 'blog',
     });
     return Blog;
 };

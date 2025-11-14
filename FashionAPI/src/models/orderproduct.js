@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            OrderProduct.belongsTo(models.TypeShip, { foreignKey: 'typeShipId', targetKey: 'id', as: 'typeShipData' })
-            OrderProduct.belongsTo(models.Voucher, { foreignKey: 'voucherId', targetKey: 'id', as: 'voucherData' })
-            OrderProduct.belongsTo(models.Allcode, { foreignKey: 'statusId', targetKey: 'code', as: 'statusOrderData' })
+            OrderProduct.belongsTo(models.typeship, { foreignKey: 'typeShipId', targetKey: 'id', as: 'typeShipData' })
+            OrderProduct.belongsTo(models.voucher, { foreignKey: 'voucherId', targetKey: 'id', as: 'voucherData' })
+            OrderProduct.belongsTo(models.allcode, { foreignKey: 'statusId', targetKey: 'code', as: 'statusOrderData' })
         }
     };
     OrderProduct.init({
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         image: DataTypes.BLOB('long')
     }, {
         sequelize,
-        modelName: 'OrderProduct',
+        modelName: 'orderproduct',
     });
     return OrderProduct;
 };

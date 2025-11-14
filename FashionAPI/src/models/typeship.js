@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     class TypeShip extends Model {
 
         static associate(models) {
-            TypeShip.hasMany(models.OrderProduct, { foreignKey: 'typeShipId', as: 'typeShipData' })
+            TypeShip.hasMany(models.orderproduct, { foreignKey: 'typeShipId', as: 'typeShipData' })
         }
     };
     TypeShip.init({
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         price: DataTypes.BIGINT
     }, {
         sequelize,
-        modelName: 'TypeShip',
+        modelName: 'typeship',
     });
     return TypeShip;
 };

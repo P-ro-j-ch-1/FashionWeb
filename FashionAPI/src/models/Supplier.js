@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         email:DataTypes.STRING
     }, {
         sequelize,
-        modelName: 'Supplier',
+        modelName: 'supplier',
     });
     return Supplier;
 };

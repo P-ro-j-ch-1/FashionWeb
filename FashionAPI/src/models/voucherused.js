@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         status: DataTypes.INTEGER
     }, {
         sequelize,
-        modelName: 'VoucherUsed',
+        modelName: 'voucherused',
     });
     return VoucherUsed;
 };

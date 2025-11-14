@@ -1,18 +1,21 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { getAuth } from 'firebase/auth'
-import { initializeApp } from 'firebase/app'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBZOS9l0Ia_aD3gMSH-NDVZO8rTAvZXGj8",
-  authDomain: "fashionweb-auth.firebaseapp.com",
-  projectId: "fashionweb-auth",
-  storageBucket: "fashionweb-auth.firebasestorage.app",
-  messagingSenderId: "969946638333",
-  appId: "1:969946638333:web:608c4ef8707a07216a9b94",
-  measurementId: "G-JBG8T8PBQ0"
+  apiKey: "AIzaSyAAClmyFnW68O2OG9UDau7M0GEfx8tMoy8",
+  authDomain: "fashionweb-9fee4.firebaseapp.com",
+  projectId: "fashionweb-9fee4",
+  storageBucket: "fashionweb-9fee4.firebasestorage.app",
+  messagingSenderId: "892440483523",
+  appId: "1:892440483523:web:2a9496000730b8e135f476",
+  measurementId: "G-H0ESYWHL9Y"
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig)
-export default firebase;
-export const authentication = getAuth(initializeApp(firebaseConfig))
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            TypeVoucher.belongsTo(models.allcode, { foreignKey: 'typeVoucher', targetKey: 'code', as: 'typeVoucherData' })
-            TypeVoucher.hasMany(models.voucher, { foreignKey: 'typeVoucherId', as: 'typeVoucherOfVoucherData' })
+            TypeVoucher.belongsTo(models.Allcode, { foreignKey: 'typeVoucher', targetKey: 'code', as: 'typeVoucherData' })
+            TypeVoucher.hasMany(models.Voucher, { foreignKey: 'typeVoucherId', as: 'typeVoucherOfVoucherData' })
         }
     };
     TypeVoucher.init({
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         minValue: DataTypes.BIGINT
     }, {
         sequelize,
-        modelName: 'typevoucher',
+        modelName: 'TypeVoucher',
     });
     return TypeVoucher;
 };

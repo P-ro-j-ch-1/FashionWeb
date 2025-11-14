@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            Blog.belongsTo(models.allcode, { foreignKey: 'subjectId', targetKey: 'code', as: 'subjectData' })
+            Blog.belongsTo(models.Allcode, { foreignKey: 'subjectId', targetKey: 'code', as: 'subjectData' })
         }
     };
     Blog.init({
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         view:DataTypes.INTEGER
     }, {
         sequelize,
-        modelName: 'blog',
+        modelName: 'Blog',
     });
     return Blog;
 };

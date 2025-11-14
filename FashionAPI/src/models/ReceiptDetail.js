@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         price:DataTypes.BIGINT
     }, {
         sequelize,
-        modelName: 'receiptdetail',
+        modelName: 'ReceiptDetail',
     });
     return ReceiptDetail;
 };

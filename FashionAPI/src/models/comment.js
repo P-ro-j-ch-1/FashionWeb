@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         image: DataTypes.BLOB('long')
     }, {
         sequelize,
-        modelName: 'comment',
+        modelName: 'Comment',
     });
     return Comment;
 };

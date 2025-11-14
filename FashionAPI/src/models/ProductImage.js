@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            ProductImage.belongsTo(models.productdetail, { foreignKey: 'productdetailId', targetKey: 'id', as: 'productImageData' })
+            ProductImage.belongsTo(models.ProductDetail, { foreignKey: 'productdetailId', targetKey: 'id', as: 'productImageData' })
         }
     };
     ProductImage.init({
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         image: DataTypes.BLOB('long')
     }, {
         sequelize,
-        modelName: 'productimage',
+        modelName: 'ProductImage',
     });
     return ProductImage;
 };

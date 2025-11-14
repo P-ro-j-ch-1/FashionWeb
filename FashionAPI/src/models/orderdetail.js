@@ -22,5 +22,5 @@ module.exports = (sequelize, DataTypes) => {
         sequelize,
         modelName: 'OrderDetail',
     });
-    return OrderDetail;
+    return orderdetail;
 };

@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class ProductDetailSize extends Model {
         static associate(models) {
-            ProductDetailSize.belongsTo(models.Allcode, { foreignKey: 'sizeId', targetKey: 'code', as: 'sizeData' })
+            ProductDetailSize.belongsTo(models.allcode, { foreignKey: 'sizeId', targetKey: 'code', as: 'sizeData' })
         }
     };
     ProductDetailSize.init({
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
        
     }, {
         sequelize,
-        modelName: 'ProductDetailSize',
+        modelName: 'productdetailsize',
     });
     return ProductDetailSize;
 };

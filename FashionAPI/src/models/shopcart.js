@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         statusId: DataTypes.STRING
     }, {
         sequelize,
-        modelName: 'shopcart',
+        modelName: 'ShopCart',
     });
     return ShopCart;
 };

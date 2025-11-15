@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         realPrice: DataTypes.BIGINT
     }, {
         sequelize,
-        modelName: 'orderdetail',
+        modelName: 'OrderDetail',
     });
     return OrderDetail;
 };

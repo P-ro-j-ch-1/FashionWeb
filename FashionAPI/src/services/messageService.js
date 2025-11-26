@@ -96,7 +96,7 @@ let loadMessage = (data) => {
                         where: { id: message[i].userId },
                     });
                     if (message[i].userData.image) {
-                        message[i].userData.image = new Buffer(
+                        message[i].userData.image = new Buffer.from(
                             message[i].userData.image,
                             "base64"
                         ).toString("binary");
@@ -134,7 +134,7 @@ let listRoomOfUser = (userId) => {
                         where: { id: room[i].userOne },
                     });
                     if (room[i].userOneData.image) {
-                        room[i].userOneData.image = new Buffer(
+                        room[i].userOneData.image = Buffer.from(
                             room[i].userOneData.image,
                             "base64"
                         ).toString("binary");
@@ -143,7 +143,7 @@ let listRoomOfUser = (userId) => {
                         where: { id: room[i].userTwo },
                     });
                     if (room[i].userTwoData.image) {
-                        room[i].userTwoData.image = new Buffer(
+                        room[i].userTwoData.image = Buffer.from(
                             room[i].userTwoData.image,
                             "base64"
                         ).toString("binary");
@@ -177,7 +177,7 @@ let listRoomOfAdmin = () => {
                         where: { id: room[i].userOne },
                     });
                     if (room[i].userOneData.image) {
-                        room[i].userOneData.image = new Buffer(
+                        room[i].userOneData.image = Buffer.from(
                             room[i].userOneData.image,
                             "base64"
                         ).toString("binary");
@@ -186,7 +186,7 @@ let listRoomOfAdmin = () => {
                         where: { id: room[i].userTwo },
                     });
                     if (room[i].userTwoData.image) {
-                        room[i].userTwoData.image = new Buffer(
+                        room[i].userTwoData.image = Buffer.from(
                             room[i].userTwoData.image,
                             "base64"
                         ).toString("binary");

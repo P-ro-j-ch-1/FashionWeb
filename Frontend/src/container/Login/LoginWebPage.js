@@ -3,7 +3,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "./LoginWebPage.css";
 import {
-    FacebookLoginButton,
     GoogleLoginButton,
 } from "react-social-login-buttons";
 import {
@@ -234,18 +233,6 @@ const LoginWebPage = () => {
                                                 Tài khoản mới
                                             </a>
                                         </div>
-                                        <FacebookLoginButton
-                                            text="Đăng nhập với Facebook"
-                                            iconSize="25px"
-                                            style={{
-                                                width: "300px",
-                                                height: "40px",
-                                                fontSize: "16px",
-                                                marginTop: "40px",
-                                                marginBottom: "10px",
-                                            }}
-                                            onClick={() => signInwithFacebook()}
-                                        />
                                         <GoogleLoginButton
                                             text="Đăng nhập với Google"
                                             iconSize="25px"

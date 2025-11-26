@@ -631,84 +631,127 @@ let createNewProductDetail = (data) => {
                 !data.image ||
                 !data.nameDetail ||
                 !data.originalPrice ||
-                !data.discountPrice ||
                 !data.id
             ) {
-                resolve({
+                return resolve({
                     errCode: 1,
                     errMessage: "Missing required parameter!",
                 });
-            } else {
-                let productdetail = await db.ProductDetail.create({
-                    productId: data.id,
-                    description: data.description,
-                    originalPrice: data.originalPrice,
-                    discountPrice: data.discountPrice,
-                    nameDetail: data.nameDetail,
-                });
-                if (productdetail) {
-                    await db.ProductImage.create({
-                        productdetailId: productdetail.id,
-                        image: data.image,
-                    });
-                    await db.ProductDetailSize.create({
-                        productdetailId: productdetail.id,
-                        width: data.width,
-                        height: data.height,
-                        sizeId: data.sizeId,
-                        weight: data.weight,
-                    });
-                }
-                resolve({
-                    errCode: 0,
-                    errMessage: "ok",
+            }
+
+            // Ép kiểu số, xử lý chuỗi rỗng / null
+            const originalPriceNum =
+                data.originalPrice === "" || data.originalPrice == null
+                    ? 0
+                    : Number(data.originalPrice);
+
+            const discountPriceNum =
+                data.discountPrice === "" || data.discountPrice == null
+                    ? 0 // hoặc null, nếu cột discountPrice cho phép NULL
+                    : Number(data.discountPrice);
+
+            // Nếu muốn chặt hơn, check luôn nếu FE gửi linh tinh
+            if (Number.isNaN(originalPriceNum) || Number.isNaN(discountPriceNum)) {
+                return resolve({
+                    errCode: 2,
+                    errMessage: "Price must be a number!",
                 });
             }
+
+            let productdetail = await db.ProductDetail.create({
+                productId: data.id,
+                description: data.description,
+                originalPrice: originalPriceNum,
+                discountPrice: discountPriceNum,
+                nameDetail: data.nameDetail,
+            });
+
+            if (productdetail) {
+                await db.ProductImage.create({
+                    productdetailId: productdetail.id,
+                    image: data.image,
+                });
+                await db.ProductDetailSize.create({
+                    productdetailId: productdetail.id,
+                    width: data.width,
+                    height: data.height,
+                    sizeId: data.sizeId,
+                    weight: data.weight,
+                });
+            }
+
+            return resolve({
+                errCode: 0,
+                errMessage: "ok",
+            });
         } catch (error) {
-            reject(error);
+            return reject(error);
         }
     });
 };
+
 let updateProductDetail = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            // discountPrice KHÔNG nên là required
             if (
                 !data.nameDetail ||
                 !data.originalPrice ||
-                !data.discountPrice ||
                 !data.id
             ) {
-                resolve({
+                return resolve({
                     errCode: 1,
                     errMessage: "Missing required parameter!",
                 });
-            } else {
-                let productDetail = await db.ProductDetail.findOne({
-                    where: { id: data.id },
-                    raw: false,
-                });
-                if (productDetail) {
-                    productDetail.nameDetail = data.nameDetail;
-                    productDetail.originalPrice = data.originalPrice;
-                    productDetail.discountPrice = data.discountPrice;
-                    productDetail.description = data.description;
-                    await productDetail.save();
-                    resolve({
-                        errCode: 0,
-                        errMessage: "ok",
-                    });
-                } else {
-                    resolve({
-                        errCode: 2,
-                        errMessage: "Product not found!",
-                    });
-                }
             }
+
+            // Ép kiểu số
+            const originalPriceNum =
+                data.originalPrice === "" || data.originalPrice == null
+                    ? 0
+                    : Number(data.originalPrice);
+
+            const discountPriceNum =
+                data.discountPrice === "" || data.discountPrice == null
+                    ? 0 // hoặc null nếu DB cho phép
+                    : Number(data.discountPrice);
+
+            if (Number.isNaN(originalPriceNum) || Number.isNaN(discountPriceNum)) {
+                return resolve({
+                    errCode: 2,
+                    errMessage: "Price must be a number!",
+                });
+            }
+
+            let productDetail = await db.ProductDetail.findOne({
+                where: { id: data.id },
+                raw: false,
+            });
+
+            if (!productDetail) {
+                return resolve({
+                    errCode: 2,
+                    errMessage: "Product not found!",
+                });
+            }
+
+            productDetail.nameDetail = data.nameDetail;
+            productDetail.originalPrice = originalPriceNum;
+            productDetail.discountPrice = discountPriceNum;
+            productDetail.description = data.description;
+            await productDetail.save();
+
+            return resolve({
+                errCode: 0,
+                errMessage: "ok",
+            });
+
         } catch (error) {
             reject(error);
         }
     });
 };
+
 let getDetailProductDetailById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {

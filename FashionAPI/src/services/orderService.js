@@ -149,7 +149,7 @@ let getDetailOrderById = (id) => {
                     nest: true,
                 });
                 if (order.image) {
-                    order.image = new Buffer(order.image, "base64").toString(
+                    order.image = Buffer.from(order.image, "base64").toString(
                         "binary"
                     );
                 }
@@ -204,10 +204,10 @@ let getDetailOrderById = (id) => {
                         j < orderDetail[i].productImage.length;
                         j++
                     ) {
-                        orderDetail[i].productImage[j].image = new Buffer(
+                        orderDetail[i].productImage[j].image = orderDetail[i].productImage[j].image ? Buffer.from(
                             orderDetail[i].productImage[j].image,
                             "base64"
-                        ).toString("binary");
+                        ).toString("binary") : null;
                     }
                 }
 
@@ -344,14 +344,12 @@ let getAllOrdersByUser = (userId) => {
                                 f < orderDetail[k].productImage.length;
                                 f++
                             ) {
-                                orderDetail[k].productImage[f].image =
-                                    new Buffer(
+                                orderDetail[k].productImage[f].image = orderDetail[k].productImage[f].image ? Buffer.from(
                                         orderDetail[k].productImage[f].image,
                                         "base64"
-                                    ).toString("binary");
+                                    ).toString("binary") : null;
                             }
                         }
-
                         addressUser[i].order[j].orderDetail = orderDetail;
                     }
                 }

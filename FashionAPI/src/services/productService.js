@@ -228,7 +228,7 @@ let getAllProductUser = (data) => {
             }
 
             if (data.categoryId && data.categoryId !== "ALL")
-                objectFilter.where = { categoryId: data.categoryId };
+                objectFilter.where = { ...objectFilter.where, categoryId: data.categoryId };
             if (data.brandId && data.brandId !== "ALL")
                 objectFilter.where = {
                     ...objectFilter.where,

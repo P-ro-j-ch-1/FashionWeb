@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fashionweb-config
+  namespace: fashionweb
+data:
+  NODE_ENV: "development"
+  DB_HOST: "mysql"
+  DB_PORT: "3306"
+  DB_DATABASE_NAME: "fashionweb"
+  DB_SSL: "false"
+  BACKEND_PORT: "3000"

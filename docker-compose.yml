@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # ==================
+  # MySQL Database
+  # ==================
+  db:
+    image: mysql:8.0
+    container_name: fashionweb-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root123}
+      MYSQL_DATABASE: ${DB_DATABASE_NAME:-fashionweb}
+      MYSQL_USER: ${DB_USERNAME:-fashionuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-fashion123}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d # Auto import SQL files
+    networks:
+      - fashionweb-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==================
+  # Backend API
+  # ==================
+  backend:
+    build:
+      context: ./FashionAPI
+      dockerfile: Dockerfile
+    container_name: fashionweb-backend
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME:-fashionweb}
+      DB_USERNAME: ${DB_USERNAME:-fashionuser}
+      DB_PASSWORD: ${DB_PASSWORD:-fashion123}
+      DB_SSL: "false"
+      JWT_SECRET: ${JWT_SECRET:-your_jwt_secret}
+      EMAIL_APP: ${EMAIL_APP:-your_email@gmail.com}
+      EMAIL_APP_PASSWORD: ${EMAIL_APP_PASSWORD:-your_app_password}
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - fashionweb-network
+    volumes:
+      - ./FashionAPI:/app
+      - /app/node_modules
+
+  # ==================
+  # Frontend (React + Nginx)
+  # ==================
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_BACKEND_URL: http://localhost:3000
+    container_name: fashionweb-frontend
+    restart: unless-stopped
+    ports:
+      - "5001:80"
+    depends_on:
+      - backend
+    networks:
+      - fashionweb-network
+
+# ==================
+# Networks
+# ==================
+networks:
+  fashionweb-network:
+    driver: bridge
+
+# ==================
+# Volumes
+# ==================
+volumes:
+  mysql_data:
+    driver: local

@@ -15,9 +15,15 @@ data:
       group_wait: 10s
       group_interval: 10s
       repeat_interval: 1h
-      receiver: 'web.hook'
+      receiver: 'telegram'
     
     receivers:
+    - name: 'telegram'
+      telegram_configs:
+      - bot_token: '8591247403:AAETI2tmbKrGNrR-H0bAAAKd3JxsMlrKaGw'
+        chat_id: 1170692028
+        parse_mode: 'HTML'
+
     - name: 'web.hook'
       webhook_configs:
-      - url: 'http://127.0.0.1:5001/' # Dummy webhook
+      - url: 'http://127.0.0.1:5001/'

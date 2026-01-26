@@ -30,4 +30,8 @@ echo "Prometheus: http://localhost:9090"
 kubectl port-forward -n fashionweb service/grafana 3002:3000 > /dev/null 2>&1 &
 echo "Grafana: http://localhost:3002 (Login: admin/admin)"
 
+# Alertmanager: 9093 -> 9093
+kubectl port-forward -n fashionweb service/alertmanager 9093:9093 > /dev/null 2>&1 &
+echo "Alertmanager: http://localhost:9093"
+
 echo "Tunnels started! Press Ctrl+C to stop (if running in foreground) or close terminal."

@@ -18,6 +18,8 @@ metadata:
   labels:
     app: prometheus
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:

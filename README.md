@@ -1,84 +1,69 @@
-# FashionWeb
-# Website Bán Quần Áo Thời Trang (FashionWeb)
+# FashionWeb - Kubernetes Optimized
 
 ## 📖 Giới thiệu
 
-Website Bán Quần Áo Thời Trang là nền tảng thương mại điện tử giúp người dùng dễ dàng xem, lựa chọn và mua sắm các sản phẩm thời trang như áo, quần, váy, phụ kiện…. Giao diện được thiết kế hiện đại, thân thiện và dễ sử dụng. Website hướng tới việc mang lại trải nghiệm mua sắm nhanh chóng – tiện lợi – an toàn cho khách hàng.
+Website Bán Quần Áo Thời Trang (FashionWeb) là nền tảng thương mại điện tử hiện đại. Phiên bản này đã được tối ưu hóa để triển khai trên **Kubernetes** với đầy đủ hệ thống **Monitoring (Prometheus/Grafana)**, **Logging (ELK Stack)** và **Alerting (Telegram)**.
 
-## 👥 Thông tin nhóm thực hiện
+## 🚀 Tính năng nổi bật
 
-**Giảng viên hướng dẫn:** GV Hoàng Trọng Phúc 
+*   **Microservices Ready:** Triển khai trên K8s với Backend, Frontend, Database riêng biệt.
+*   **Centralized Logging:** Elasticsearch, Kibana, Filebeat thu thập log từ tất cả các pod.
+*   **Monitoring:** Prometheus thu thập metrics, Grafana vẽ biểu đồ (CPU, RAM, Network).
+*   **Alerting:** Cảnh báo qua Telegram khi hệ thống gặp sự cố (Server Down, High Load).
 
-| STT | Thành viên | Vai trò |
-| :--- | :--- | :--- |
-| 1 | Nguyễn Xuân Sáng | Project Manager  |
-| 2 | Lê Văn Mạnh Hà | Backend  |
-| 3 | Đoàn Thế Nam | Frontend  |
-| 4 | Nguyễn Hùng Dũng | Tester  |
-| 5 | Cao Quang Tiến | DevOps  |
+## 🛠 Công nghệ
 
-## 🛠 Công nghệ sử dụng
+*   **Application:** ReactJS, NodeJS, MySQL.
+*   **Infrastructure:** Kubernetes (Minikube), Docker.
+*   **DevOps Stack:**
+    *   **Logging:** Elasticsearch, Kibana, Filebeat.
+    *   **Monitoring:** Prometheus, Node Exporter, Grafana.
+    *   **Alerting:** Alertmanager (Telegram Integration).
 
-* **Frontend:** ReactJs 
-* **Backend:** NodeJs 
-* **Database:** MySql 
+## 👥 Nhóm thực hiện
 
-## ✨ Chức năng
+| Thành viên | Vai trò |
+| :--- | :--- |
+| **Nguyễn Xuân Sáng** | Project Manager |
+| **Lê Văn Mạnh Hà** | Backend |
+| **Đoàn Thế Nam** | Frontend |
+| **Nguyễn Hùng Dũng** | Tester |
+| **Cao Quang Tiến** | DevOps |
 
-### 1. Quản trị viên (Admin)
-* **Quản lý người dùng:** Thêm, sửa, xóa, phân quyền người dùng.
-* **Quản lý sản phẩm & Danh mục:** Thêm, cập nhật, xóa sản phẩm và danh mục.
-* **Quản lý kinh doanh:** Quản lý nhãn hàng , nhà cung cấp , nhập hàng , và đơn hàng.
-* **Marketing:** Quản lý băng rôn , chủ đề , bài đăng.
-* **Khuyến mãi:** Quản lý loại khuyến mãi  và chương trình khuyến mãi.
-* **Chăm sóc khách hàng:** Quản lý và trả lời tin nhắn.
-* **Thống kê:** Xem báo cáo thống kê về sản phẩm, người dùng, doanh thu.
+---
 
-### 2. Nhân viên
-* **Đơn hàng:** Theo dõi và cập nhật tình trạng đơn hàng.
-* **Kho:** Cập nhật thông tin nhà cung cấp , ghi nhận quá trình nhập hàng.
-* **Giao tiếp:** Nhắn tin với admin, khách hàng hoặc nhà cung cấp.
+## 📚 Hướng Dẫn Triển Khai (Deployment Guide)
 
-### 3. Khách hàng
-* **Tài khoản:** Quản lý thông tin cá nhân , địa chỉ giao hàng , xem lịch sử mua hàng.
-* **Mua sắm:** Xem sản phẩm , thêm vào giỏ hàng (thêm, sửa, xóa) , đặt hàng và thanh toán online.
-* **Tiện ích:** Xem tin tức , áp dụng mã khuyến mãi.
-* **Tương tác:** Bình luận, đánh giá sản phẩm , nhắn tin với admin/nhân viên.
+Để xem hướng dẫn chi tiết cách cài đặt và chạy dự án này trên Kubernetes, vui lòng xem các tài liệu sau:
 
-## 📂 Danh sách trang (Sitemap)
-* Trang chủ, Trang sản phẩm, Chi tiết sản phẩm.
-* Giỏ hàng, Thanh toán, Voucher.
-* Tin tức, Đăng nhập/Đăng ký.
-* Dashboard Admin, Trang nhân viên, Người dùng.
+### [👉 HƯỚNG DẪN DEPLOY CHI TIẾT (DEPLOYMENT_GUIDE.md)](DEPLOYMENT_GUIDE.md)
+*(Đây là tài liệu chính, bao gồm tất cả các bước từ cài đặt môi trường đến deploy full stack)*
 
-## 💻 Cài đặt và Chạy dự án (Local)
+### Các tài liệu phụ trợ:
+*   [Hướng dẫn Prometheus (Query Metrics)](PROMETHEUS_GUIDE.md)
+*   [Hướng dẫn Grafana (Dashboards)](GRAFANA_GUIDE.md)
+*   [Hướng dẫn Alerting (Cấu hình cảnh báo)](ALERTING_GUIDE.md)
 
-### Yêu cầu
-* Git
-* Node.js
-* Xampp Control Panel (Apache & MySQL)
+---
 
-### Các bước thực hiện
+## ⚡️ Chạy nhanh (Quick Start)
 
-1.  **Clone project:**
+Nếu bạn đã cài sẵn Docker & Minikube:
+
+1.  **Clone code:**
     ```bash
-    git clone [https://github.com/P-ro-j-ch-1/FashionWeb.git](https://github.com/P-ro-j-ch-1/FashionWeb.git)
+    git clone https://github.com/P-ro-j-ch-1/FashionWeb.git
+    cd FashionWeb
     ```
-    
 
-2.  **Cài đặt Database:**
-    * Mở XAMPP, chọn **Start** ở Apache và MySQL.
-    * Chọn **Admin** ở MySQL để mở công cụ quản lý.
-    * Tạo Database mới tên là `fashionweb`.
-    * Import file database `.sql` vào.
-
-3.  **Cài đặt và chạy ứng dụng:**
-    Mở terminal tại thư mục `FashionAPI` (Backend) và `Frontend` và chạy các lệnh sau:
+2.  **Chạy script deploy:**
+    *(Lưu ý: Bạn cần update `k8s/alertmanager-configmap.yaml` với Telegram Token của bạn trước nếu muốn dùng Alert)*
     ```bash
-    npm install
-    npm start
+    ./resume_project.sh
     ```
-    
 
-    
-
+3.  **Truy cập:**
+    Chạy script tạo tunnel để truy cập các dịch vụ:
+    ```bash
+    ./start_tunnels.sh
+    ```

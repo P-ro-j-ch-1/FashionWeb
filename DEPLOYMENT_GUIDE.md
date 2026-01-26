@@ -134,7 +134,26 @@ kubectl apply -f k8s/grafana-deployment.yaml
 - **Prometheus:** [http://localhost:9090](http://localhost:9090)
 - **Grafana:** [http://localhost:3002](http://localhost:3002) (Login: `admin` / `admin`)
 
+### 6.3 Deploy Alerting (Alertmanager)
+Chúng ta sẽ triển khai Alertmanager để nhận cảnh báo từ Prometheus và gửi qua Telegram.
+
+1. **Cấu hình Telegram:**
+   Mở file `k8s/alertmanager-configmap.yaml`, cập nhật `bot_token` và `chat_id` của bạn.
+
+2. **Deploy:**
+   ```bash
+   kubectl apply -f k8s/alertmanager-configmap.yaml
+   kubectl apply -f k8s/alertmanager-deployment.yaml
+   
+   # Cập nhật Prometheus để trỏ về Alertmanager
+   kubectl apply -f k8s/prometheus-configmap.yaml
+   kubectl rollout restart deployment/prometheus -n fashionweb
+   ```
+
+3. **Truy cập:** [http://localhost:9093](http://localhost:9093)
+
 ---
+
 
 ## 7. Truy Cập Ứng Dụng
 

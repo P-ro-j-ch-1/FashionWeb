@@ -19,7 +19,10 @@ Trong file `k8s/prometheus-configmap.yaml`, chúng ta đã tạo sẵn 3 luật:
 2.  **NodeHighCPU**: Báo nếu CPU dùng trên 80% trong 5 phút. (Severity: Warning)
 3.  **NodeHighMemory**: Báo nếu RAM dùng trên 80% trong 5 phút. (Severity: Warning)
 
-## 3. Cách Test (Thử Làm Giả Sự Cố)
+## 3. Cách Test (Thử Làm Giả Sự Cố) :
+
+Tắt Backend: kubectl scale deployment backend -n fashionweb --replicas=0 -> Sẽ nhận Alert BackendMissing.
+Bật lại: kubectl scale deployment backend -n fashionweb --replicas=1 -> Sẽ nhận Resolved (và Alert InstanceDown cũng sẽ biến mất).
 
 Để thấy hệ thống hoạt động, hãy thử làm "sập" một pod giả định.
 
@@ -55,6 +58,14 @@ Bạn có thể sửa file config rule để test, ví dụ: "Báo động nếu
 1.  Quay lại [http://localhost:9090/alerts](http://localhost:9090/alerts).
 2.  Bạn sẽ thấy Alert chuyển sang màu **Vàng (Pending)** rồi **Đỏ (Firing)**.
 3.  Truy cập [http://localhost:9093](http://localhost:9093) (Alertmanager) sẽ thấy cảnh báo xuất hiện ở đó.
+
+### 3.2 Cách Test Bằng Script (Nhanh Gọn)
+Nếu bạn không muốn tắt/bật Pod, mình đã chuẩn bị sẵn một script để bắn tin nhắn test ngay lập tức:
+
+```bash
+./test_telegram_alert.sh
+```
+Bot sẽ gửi tin nhắn "Manual Test Alert" về Telegram của bạn.
 
 ## 4. Tích Hợp Thông Báo (Nâng Cao)
 Hiện tại Alertmanager chỉ đang "hứng" lỗi. Để gửi ra ngoài (Telegram/Slack), bạn cần sửa file `k8s/alertmanager-configmap.yaml`.

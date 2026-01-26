@@ -35,8 +35,7 @@ Xem tỉ lệ CPU đang bận rộn (tính theo %):
 
 #### RAM Usage
 Xem lượng RAM đang dùng (Bytes):
-```ory_MemTpromql
-node_memotal_bytes - node_memory_MemAvailable_bytes
+```onode_memory_MemTotal_bytes - (node_memory_MemFree_bytes + node_memory_Buffers_bytes + node_memory_Cached_bytes)
 ```
 
 #### Network Traffic

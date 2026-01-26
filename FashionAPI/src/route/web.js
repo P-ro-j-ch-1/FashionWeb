@@ -23,6 +23,13 @@ let initwebRoutes = (app) => {
     router.get("/", (req, res) => {
         return res.send("hello")
     })
+
+    // [NEW] Metrics for Prometheus
+    router.get("/metrics", (req, res) => {
+        res.set('Content-Type', 'text/plain');
+        return res.send("backend_up 1\n");
+    })
+
     // [NEW] Elastic Sync Route
     router.post('/api/search/sync', elasticController.syncData);
     //=====================API USER==========================//

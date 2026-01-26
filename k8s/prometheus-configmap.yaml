@@ -66,14 +66,14 @@ data:
     groups:
     - name: basic_alerts
       rules:
-      - alert: TestTelegramAlert
-        expr: vector(1)
+      - alert: BackendMissing
+        expr: absent(up{app="backend", job="kubernetes-pods"})
         for: 10s
         labels:
-          severity: warning
+          severity: critical
         annotations:
-          summary: "Test Alert for Telegram"
-          description: "This is a test alert to verify Telegram integration. If you see this, it works!"
+          summary: "Backend Service Missing"
+          description: "All Backend pods have disappeared! Service is DOWN."
 
       - alert: InstanceDown
         expr: up == 0

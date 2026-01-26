@@ -200,6 +200,14 @@ kubectl logs -n fashionweb deployment/backend
 kubectl logs -f statefulset/elasticsearch -n fashionweb
 ```
 
+### 8.4 Lỗi Prometheus "CrashLoopBackOff"
+Nếu Prometheus bị lỗi `CrashLoopBackOff` với log `resource temporarily unavailable` (lỗi khóa DB), nguyên nhân do volume chưa kịp nhả ra khi restart.
+*   **Cách khắc phục:** Xóa thủ công pod cũ để nó nhả volume ra.
+    ```bash
+    kubectl delete pods -n fashionweb -l app=prometheus
+    ```
+    *(Hiện tại Deployment đã được cấu hình strategy `Recreate` để hạn chế lỗi này).*
+
 ---
 
 ## 9. Tích Hợp Backend (Dành cho Dev)

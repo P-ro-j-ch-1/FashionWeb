@@ -72,6 +72,16 @@ spec:
                 secretKeyRef:
                   name: fashionweb-secret
                   key: EMAIL_APP_PASSWORD
+            - name: ELASTICSEARCH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: ELASTICSEARCH_HOST
+            - name: ELASTICSEARCH_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: ELASTICSEARCH_PORT
           readinessProbe:
             httpGet:
               path: /

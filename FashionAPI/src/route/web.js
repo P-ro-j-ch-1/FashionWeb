@@ -15,6 +15,7 @@ import bannerController from '../controllers/bannerController';
 import blogController from '../controllers/blogController';
 import messageController from '../controllers/messageController';
 import commentController from '../controllers/commentController';
+import elasticController from '../controllers/elasticController';
 
 let router = express.Router();
 
@@ -22,6 +23,8 @@ let initwebRoutes = (app) => {
     router.get("/", (req, res) => {
         return res.send("hello")
     })
+    // [NEW] Elastic Sync Route
+    router.post('/api/search/sync', elasticController.syncData);
     //=====================API USER==========================//
     router.post('/api/create-new-user', userController.handleCreateNewUser)
     router.put('/api/update-user', middlewareControllers.verifyTokenUser, userController.handleUpdateUser)
@@ -36,7 +39,7 @@ let initwebRoutes = (app) => {
     router.post('/api/forgotpassword-email', userController.handleForgotPassword)
     router.get('/api/check-phonenumber-email', userController.checkPhonenumberEmail)
     router.get('/api/get-detail-user-by-email', userController.getDetailUserByEmail)
-    
+
     //===================API ALLCODE========================//
     router.post('/api/create-new-all-code', middlewareControllers.verifyTokenAdmin, allcodeController.handleCreateNewAllCode)
     router.put('/api/update-all-code', middlewareControllers.verifyTokenAdmin, allcodeController.handleUpdateAllCode)
@@ -79,7 +82,7 @@ let initwebRoutes = (app) => {
     router.get('/api/get-all-shopcart-by-userId', middlewareControllers.verifyTokenUser, shopCartController.getAllShopCartByUserId)
     router.delete('/api/delete-item-shopcart', middlewareControllers.verifyTokenUser, shopCartController.deleteItemShopCart)
 
-     //=================API TYPESHIP =======================//
+    //=================API TYPESHIP =======================//
     router.post('/api/create-new-typeship', middlewareControllers.verifyTokenAdmin, typeshipController.createNewTypeShip)
     router.get('/api/get-detail-typeship', typeshipController.getDetailTypeshipById)
     router.get('/api/get-all-typeship', typeshipController.getAllTypeship)

@@ -10,3 +10,5 @@ data:
   DB_DATABASE_NAME: "fashionweb"
   DB_SSL: "false"
   BACKEND_PORT: "3000"
+  ELASTICSEARCH_HOST: "elasticsearch"
+  ELASTICSEARCH_PORT: "9200"

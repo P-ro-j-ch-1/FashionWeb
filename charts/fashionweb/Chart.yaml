@@ -1,0 +1,6 @@
+apiVersion: v2
+name: fashionweb
+description: A Helm chart for the FashionWeb application stack (MySQL, Backend, Frontend, ELK, Monitoring).
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "{{ .Values.backend.service.port }}"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: backend
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.backend.service.port }}
+          env:
+            - name: PORT
+              value: "{{ .Values.backend.service.port }}"
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: NODE_ENV
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: DB_PORT
+            - name: DB_DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: DB_DATABASE_NAME
+            - name: DB_SSL
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: DB_SSL
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: fashionweb-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fashionweb-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: fashionweb-secret
+                  key: JWT_SECRET
+            - name: EMAIL_APP
+              valueFrom:
+                secretKeyRef:
+                  name: fashionweb-secret
+                  key: EMAIL_APP
+            - name: EMAIL_APP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fashionweb-secret
+                  key: EMAIL_APP_PASSWORD
+            - name: ELASTICSEARCH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: ELASTICSEARCH_HOST
+            - name: ELASTICSEARCH_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: fashionweb-config
+                  key: ELASTICSEARCH_PORT
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.backend.service.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: {{ .Values.backend.service.port }}
+      targetPort: {{ .Values.backend.service.port }}
+      nodePort: {{ .Values.backend.service.nodePort }}
+  type: {{ .Values.backend.service.type }}

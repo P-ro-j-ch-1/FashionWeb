@@ -1,0 +1,154 @@
+# Default values for fashionweb.
+
+# Global settings
+namespace: fashionweb
+
+# MySQL Configuration
+mysql:
+  image:
+    repository: mysql
+    tag: "8.0"
+  storage:
+    size: 1Gi
+  service:
+    port: 3306
+
+# Backend Configuration
+backend:
+  replicaCount: 1
+  image:
+    repository: fashionweb-backend
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+    port: 3000
+    nodePort: 30000
+  resources: {} 
+
+# Frontend Configuration
+frontend:
+  replicaCount: 1
+  image:
+    repository: fashionweb-frontend
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30001
+  resources: {}
+
+# Logging (ELK)
+elasticsearch:
+  image:
+    repository: docker.elastic.co/elasticsearch/elasticsearch
+    tag: "8.11.0"
+  replicas: 1
+  storage:
+    size: 2Gi
+  service:
+    port: 9200
+    nodePort: 30002
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1000m"
+
+kibana:
+  image:
+    repository: docker.elastic.co/kibana/kibana
+    tag: "8.11.0"
+  service:
+    port: 5601
+    nodePort: 30003
+  resources: 
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+
+filebeat:
+  image:
+    repository: docker.elastic.co/beats/filebeat
+    tag: "8.11.0"
+  resources:
+    limits:
+      memory: 200Mi
+      cpu: 100m
+    requests:
+      memory: 100Mi
+      cpu: 50m
+
+# Monitoring Stack
+prometheus:
+  image:
+    repository: prom/prometheus
+    tag: "v2.45.0"
+  replicas: 1
+  storage:
+    size: 2Gi
+  service:
+    port: 9090
+    nodePort: 30004
+  # No specific resource limits in current file, but good to have placeholders
+  resources: {}
+
+alertmanager:
+  image:
+    repository: prom/alertmanager
+    tag: "v0.26.0"
+  replicas: 1
+  service:
+    port: 9093
+    nodePort: 30006
+  telegram:
+    botToken: "8591247403:AAETI2tmbKrGNrR-H0bAAAKd3JxsMlrKaGw"
+    chatId: "1170692028"
+
+grafana:
+  image:
+    repository: grafana/grafana
+    tag: "10.2.0"
+  replicas: 1
+  storage:
+    size: 1Gi
+  service:
+    port: 3000
+    nodePort: 30005
+
+nodeExporter:
+  image:
+    repository: prom/node-exporter
+    tag: "v1.7.0"
+  resources:
+    limits:
+      cpu: 250m
+      memory: 180Mi
+    requests:
+      cpu: 102m
+      memory: 180Mi
+
+# Application Configuration
+config:
+  nodeEnv: "development"
+  dbHost: "mysql" 
+  dbPort: "3306"
+  dbName: "fashionweb"
+  dbSsl: "false"
+  elasticsearchHost: "elasticsearch"
+  elasticsearchPort: "9200"
+
+# Secrets
+secrets:
+  dbUsername: "root"
+  dbPassword: "root123"
+  dbRootPassword: "root123"
+  jwtSecret: "bingo27062000"
+  emailApp: "manhha280699@gmail.com"
+  emailAppPassword: "your_app_password"

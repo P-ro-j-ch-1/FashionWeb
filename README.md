@@ -20,17 +20,6 @@ Website Bán Quần Áo Thời Trang (FashionWeb) là nền tảng thương mạ
     *   **Monitoring:** Prometheus, Node Exporter, Grafana.
     *   **Alerting:** Alertmanager (Telegram Integration).
 
-## 👥 Nhóm thực hiện
-
-| Thành viên | Vai trò |
-| :--- | :--- |
-| **Nguyễn Xuân Sáng** | Project Manager |
-| **Lê Văn Mạnh Hà** | Backend |
-| **Đoàn Thế Nam** | Frontend |
-| **Nguyễn Hùng Dũng** | Tester |
-| **Cao Quang Tiến** | DevOps |
-
----
 
 ## 📚 Hướng Dẫn Triển Khai (Deployment Guide)
 
